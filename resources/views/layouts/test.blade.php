@@ -34,8 +34,8 @@
       <li><a href="">Teams</a></li>
       <li><a href="">Projecten</a></li>
       <li><a href="">Leden</a></li>
-      <li><a href="">GLR-coins</a></li>
-      <li><a href="" style="margin-top:5%;">log-out</a></li>
+      <li><a href="">GLRcoins</a></li>
+      <li><a href="" style="margin-top:5%;">logout</a></li>
     </ul>
   </aside>
 
