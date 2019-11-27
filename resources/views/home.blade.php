@@ -26,7 +26,19 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
+
+            <div class="row">
+                <nav>
+                    <ul>
+                        <li><a>Statistic 1</a></li>
+                        <li><a>Statistic 2</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+
         @endisset
     </div>
 </section>
