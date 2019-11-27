@@ -41,9 +41,10 @@ class HomeController extends Controller
         } else {
             //dd($team);
 //            $user = Team::find($team->id)->Users->pluck('name');
-
-            $users = Team::where('id', '=', $team)->Users->get();
-            dd(DB::getQueryLog());
+            $team2 = $team
+            $users = Team::find($team2)->Users->pluck('name');
+            dd($users);
+           //dd(DB::getQueryLog());
             //dd($users);
 //            $teamMembers = Teams::join('Team_student', 'Team.ID', '=', 'Team_student.TeamID')
 //                ->join('users', 'Team_student.userID', '=', 'users.id')
