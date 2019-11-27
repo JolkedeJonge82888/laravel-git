@@ -34,14 +34,14 @@ class HomeController extends Controller
         DB::enableQueryLog(); // Enable query log
         $team = Users::find(Auth::user()->id)->Team->pluck('id');
 
-        if(is_null($team) || empty($team) || strlen($team) < 1 ? NULL : $team) {
+        if(is_null($team) || empty($team) || strlen($team) > 1 ? NULL : $team) {
 
             return view('home');
 
         } else {
 
             $users = Team::where('id', '=', $team)->with('Users')->pluck('name');
-
+            dd($users);
 
 
             return view('home', ['users' => $users]);
