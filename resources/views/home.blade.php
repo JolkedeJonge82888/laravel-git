@@ -29,17 +29,20 @@
 
             </div>
 
-            <div class="row">
-                <nav>
-                    <ul>
-                        <li><a>Statistic 1</a></li>
-                        <li><a>Statistic 2</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-
         @endisset
+    </div>
+</section>
+<section id="stats" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">STATISTICS</h5>
+        <div class="row">
+            <nav>
+                <ul>
+                    <li class="underline-hover current"><a href="">Statistic 1</a></li>
+                    <li class="underline-hover"><a href="">Statistic 2</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </section>
 @endsection

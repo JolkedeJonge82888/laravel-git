@@ -21,6 +21,7 @@
 
 section {
     padding: 60px 0;
+    margin-top: 80px;
 }
 
 section .section-title {
@@ -98,11 +99,6 @@ section .section-title {
     border-radius: 50%;
 }
 
-/*   General   */
-
-#push_content {
-    transition: 1s;
-}
 
 /*  sidebar  */
 .sidebar {
@@ -177,6 +173,10 @@ section .section-title {
 
 .openbtn:hover {
     color: greenyellow;
+}
+
+#push_content {
+    transition: 1s;
 }
 
 @media screen and (max-height: 450px) {
