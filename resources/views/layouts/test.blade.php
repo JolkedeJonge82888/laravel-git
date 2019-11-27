@@ -29,13 +29,13 @@
   <aside id="mySidebar" class="sidebar">
     <ul>
       <li><a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-backspace fa-xs"></i></a></li>
-      <li><a href="">Dashboard <i class="fas fa-columns"></i></a></li>
-      <li><a href="">Leaderboard <i class="fas fa-chart-area"></i></a></li>
-      <li><a href="">Teams <i class="fas fa-user-friends"></i></a></li>
-      <li><a href="">Projecten <i class="fas fa-project-diagram"></i></a></li>
-      <li><a href="">Leden <i class="fas fa-users"></i></a></li>
-      <li><a href="">GLR-coins <i class="fas fa-money-bill-wave-alt"></i></a></li>
-      <li><a href="" style="margin-top:5%;">log-out <i class="fas fa-sign-out-alt"></i></a></li>
+      <li><a href="">Dashboard</a></li>
+      <li><a href="">Leaderboard</a></li>
+      <li><a href="">Teams</a></li>
+      <li><a href="">Projecten</a></li>
+      <li><a href="">Leden</a></li>
+      <li><a href="">GLR-coins</a></li>
+      <li><a href="" style="margin-top:5%;">log-out</a></li>
     </ul>
   </aside>
 
