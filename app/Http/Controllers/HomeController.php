@@ -41,7 +41,7 @@ class HomeController extends Controller
         } else {
             //dd($team);
 //            $user = Team::find($team->id)->Users->pluck('name');
-            $team2 = $team
+            $team2 = $team;
             $users = Team::find($team2)->Users->pluck('name');
             dd($users);
            //dd(DB::getQueryLog());
