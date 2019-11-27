@@ -41,10 +41,10 @@ class HomeController extends Controller
         } else {
 
             $users = Team::where('id', '=', $team)->with('Users')->pluck('name');
-            dd($users);
 
 
-            return view('home', ['users' => $user]);
+
+            return view('home', ['users' => $users]);
         }
 
         //dd($team);
