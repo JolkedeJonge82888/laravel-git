@@ -1,7 +1,7 @@
 .switch-content {
     list-style-type: none;
     margin: auto;
-    margin-top: 30px;
+    margin-bottom: 30px;
     width: 90%;
     height: auto;
     text-align: center;
@@ -11,6 +11,10 @@
     display: inline-block;
     margin-right: 40px;
     max-width: 400px;
+}
+
+.switch-content>li:hover {
+    cursor: pointer;
 }
 
 .switch-content a {
@@ -47,7 +51,7 @@
     transition: .25s linear;
 }
 .switch-content h2 > a:hover:before,
-.switch-content     h2 > a:focus:before {
+.switch-content h2 > a:focus:before {
     visibility: visible;
     transform: scaleX(1);
 }

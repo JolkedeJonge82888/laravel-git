@@ -32,16 +32,17 @@
 
         </div>
     </section>
-    <nav>
-        <ul class="switch-content">
-            <li><h2><a href="">Statistics 1</a></h2></li>
-            <li><h2><a href="">Statistics 2</a></h2></li>
-        </ul>
-    </nav>
+
     <section id="stats" class="pb-5">
+        <nav>
+            <ul class="switch-content">
+                <li><h2><a onclick="switch1()">Statistics 1</a></h2></li>
+                <li><h2><a onclick="switch2()">Statistics 2</a></h2></li>
+            </ul>
+        </nav>
         <div class="container">
             <h5 class="section-title h1">STATISTICS</h5>
-            <div class="row">
+            <div id="switch-content1" style="display: flex" class="row">
 {{--                <nav>--}}
 {{--                    <ul>--}}
 {{--                        <li class="underline-hover current"><a href="">Statistic 1</a></li>--}}
@@ -68,7 +69,7 @@
 
                 @endforeach
             </div>
-            <div class="row">
+            <div id="switch-content2" style="display: none;" class="row">
                 <script>
 
                     google.charts.load("current", {packages:['corechart']});
@@ -97,5 +98,27 @@
             </div>
         </div>
     </section>
+    <script>
+        function switch1() {
+            var switch1 = document.getElementById("switch-content1");
+            var switch2 = document.getElementById("switch-content2");
+
+            if (switch1.style.display === "none") {
+                switch1.style.display = "flex";
+                switch2.style.display = "none";
+            }
+        }
+
+        function switch2() {
+            var switch1 = document.getElementById("switch-content1");
+            var switch2 = document.getElementById("switch-content2");
+
+            if (switch1.style.display === "flex") {
+                switch1.style.display = "none";
+                switch2.style.display = "block";
+            }
+        }
+
+    </script>
 @endisset
 @endsection
