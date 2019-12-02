@@ -14,14 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/welcome1', function () {
-    return view('welcome1');
-});
-
-Route::get('/test', function () {
-    return view('view');
-});
+Route::get('/opdracht', 'OpdrachtController@index')->name('opdracht');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
