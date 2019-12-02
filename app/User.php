@@ -38,5 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    const DOCENT_TYPE = 'Docent';
+    const ADMIN_TYPE = 'Admin';
+
+    public function isDocent()    {
+        return $this->role === self::DOCENT_TYPE;
+    }
+    public function isAdmin()    {
+        return $this->role === self::ADMIN_TYPE;
+    }
 
 }

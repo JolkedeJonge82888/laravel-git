@@ -16,6 +16,14 @@ Route::get('/', function () {
 });
 Route::get('/opdracht', 'OpdrachtController@index')->name('opdracht');
 
+Route::get('/docent', 'DocentController@docent')
+    ->middleware('is_docent')
+    ->name('Docent');
+
+Route::get('/admin', 'AdminController@admin')
+    ->middleware('is_admin')
+    ->name('Admin');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');
