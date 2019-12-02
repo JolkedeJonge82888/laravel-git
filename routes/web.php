@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/kaas', function () {
+Route::get('/welcome1', function () {
+    return view('welcome1');
+});
+
+Route::get('/test', function () {
     return view('view');
 });
 
