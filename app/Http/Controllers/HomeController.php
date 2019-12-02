@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 use App\Users;
 use App\Team;
 
@@ -39,11 +40,9 @@ class HomeController extends Controller
             return view('home');
 
         } else {
-
+            $teamName = Team::all();
             $users = Team::find($team)->Users;
-
-
-            return view('home', ['users' => $users]);
+            return view('home', ['users' => $users, 'teams' => $teamName]);
         }
 
         //dd($team);
