@@ -32,6 +32,12 @@
 
         </div>
     </section>
+    <nav>
+        <ul>
+            <li><h2><a href="">Statistics 1</a></h2></li>
+            <li><h2><a href="">Statistics 2</a></h2></li>
+        </ul>
+    </nav>
     <section id="stats" class="pb-5">
         <div class="container">
             <h5 class="section-title h1">STATISTICS</h5>
@@ -61,7 +67,8 @@
                     </div>
 
                 @endforeach
-
+            </div>
+            <div class="row">
                 <script>
 
                     google.charts.load("current", {packages:['corechart']});
