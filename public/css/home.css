@@ -1,4 +1,4 @@
-ul {
+.switch-content {
     list-style-type: none;
     margin: auto;
     margin-top: 30px;
@@ -7,33 +7,33 @@ ul {
     text-align: center;
 }
 
-li {
+.switch-content>li {
     display: inline-block;
     margin-right: 40px;
     max-width: 400px;
 }
 
-a {
+.switch-content a {
     position: relative;
     text-decoration: none;
 }
 
-a:visited {
+.switch-content a:visited {
     text-decoration: none;
 }
 
-a:hover {
+.switch-content a:hover {
     text-decoration: none;
     color: #007b5e;
 }
 
-h2 a {
+.switch-content h2 a {
     text-transform: uppercase;
     color: #007b5e;
 }
 
 /*  underline-hover  */
-h2 > a:before {
+.switch-content h2 > a:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -46,8 +46,8 @@ h2 > a:before {
     transform: scaleX(0);
     transition: .25s linear;
 }
-h2 > a:hover:before,
-h2 > a:focus:before {
+.switch-content h2 > a:hover:before,
+.switch-content     h2 > a:focus:before {
     visibility: visible;
     transform: scaleX(1);
 }

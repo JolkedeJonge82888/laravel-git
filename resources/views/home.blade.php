@@ -33,7 +33,7 @@
         </div>
     </section>
     <nav>
-        <ul>
+        <ul class="switch-content">
             <li><h2><a href="">Statistics 1</a></h2></li>
             <li><h2><a href="">Statistics 2</a></h2></li>
         </ul>
