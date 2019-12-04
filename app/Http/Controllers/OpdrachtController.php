@@ -47,6 +47,12 @@ class OpdrachtController extends Controller
     {
         if(auth()->user()->isDocent()) {
 
+            $request->validate([
+                'opdracht_title'=>'required|string|min:8|max:255',
+                'opdracht_startdate'=> 'required|date',
+                'opdracht_enddate'=> 'required|date',
+                'opdracht_description' => 'required|string'
+            ]);
 
             $description = Description::create(['text' => $request->input('opdracht_description')]);
 
@@ -99,6 +105,26 @@ class OpdrachtController extends Controller
     public function update(Request $request, $id)
     {
         if(auth()->user()->isDocent()) {
+
+            $request->validate([
+                'opdracht_title'=>'required|string|min:8|max:255',
+                'opdracht_startdate'=> 'required|date',
+                'opdracht_enddate'=> 'required|date',
+                'opdracht_description' => 'required|string'
+            ]);
+
+            $opdracht = Opdracht::find($id);
+
+            $opdracht->title = $request->input('opdracht_title');
+            $opdracht->start_date = $request->input('opdracht_startdate');
+            $opdracht->end_date = $request->input('opdracht_enddate');
+            $description = Description::find($opdracht->klant_id);
+            $description->text = $request->input('opdracht_description');
+            $opdracht->save();
+            $description->save();
+
+            return redirect('/opdracht')->with('success', 'Stock has been updated');
+
 
         } else {
             return redirect('/opdracht');

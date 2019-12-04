@@ -9,7 +9,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Edit Share
+            Edit Opdracht
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -21,7 +21,7 @@
                     </ul>
                 </div><br />
             @endif
-            <form method="post">
+            <form method="POST">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
