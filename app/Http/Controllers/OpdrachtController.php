@@ -18,8 +18,9 @@ class OpdrachtController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth');
         $opdrachts = Opdracht::with('Description')->get();
-        return view('opdracht.opdracht')->with('opdrachts', $opdrachts);
+        return view('opdracht.index')->with('opdrachts', $opdrachts);
     }
 
     /**
@@ -29,7 +30,12 @@ class OpdrachtController extends Controller
      */
     public function create()
     {
-        return view('opdracht.opdracht-create');
+        if(auth()->user()->isDocent()) {
+            return view('opdracht.create');
+        } else {
+            return redirect('/opdracht');
+        }
+
     }
 
     /**
@@ -39,16 +45,22 @@ class OpdrachtController extends Controller
      */
     public function store(Request $request)
     {
-        $description = Description::create(['text' => $request->input('opdracht_description')]);
+        if(auth()->user()->isDocent()) {
 
-        Opdracht::insert([
-            'klant_id' => Auth::user()->id,
-            'title' => $request->input('opdracht_title'),
-            'start-date' => $request->input('opdracht_startdate'),
-            'end-date' => $request->input('opdracht_enddate'),
-            'description_id' => $description->id,
-        ]);
-        return redirect('/opdracht')->with('success', 'Opdracht has been added');
+
+            $description = Description::create(['text' => $request->input('opdracht_description')]);
+
+            Opdracht::insert([
+                'klant_id' => Auth::user()->id,
+                'title' => $request->input('opdracht_title'),
+                'start_date' => $request->input('opdracht_startdate'),
+                'end_date' => $request->input('opdracht_enddate'),
+                'description_id' => $description->id,
+            ]);
+            return redirect('/opdracht')->with('success', 'Opdracht has been added');
+        } else {
+            return redirect('/opdracht');
+        }
     }
 
     /**
@@ -69,7 +81,13 @@ class OpdrachtController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(auth()->user()->isDocent()) {
+            $opdracht = Opdracht::find($id)->Description;
+
+            return view('opdracht.edit', compact('opdracht'));
+        } else {
+            return redirect('/opdracht');
+        }
     }
 
     /**
@@ -80,7 +98,11 @@ class OpdrachtController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(auth()->user()->isDocent()) {
+
+        } else {
+            return redirect('/opdracht');
+        }
     }
 
     /**
@@ -91,6 +113,11 @@ class OpdrachtController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(auth()->user()->isDocent()) {
+
+
+        } else {
+            return redirect('/opdracht');
+        }
     }
 }
