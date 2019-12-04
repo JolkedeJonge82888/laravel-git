@@ -81,7 +81,8 @@
                         ]);
                         var options = {
                             title: "Team Points",
-
+                            width: 600,
+                            height: 240,
                             bar: {groupWidth: "40%"},
 
                         };
@@ -89,7 +90,7 @@
                         chart.draw(data, options);
                     }
                 </script>
-                <div id="chart_div" class="chart-div"></div>
+                <div id="chart_div" class="chart-div" style="width: 90%; margin: auto;"></div>
 
             </div>
         </div>

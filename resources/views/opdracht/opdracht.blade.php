@@ -23,6 +23,8 @@
                                     <div class="card-body text-center">
                                         <h4 class="card-title">{{ $opdracht->title }}</h4>
                                         <p class="card-text">{{ $opdracht->description->text }}</p>
+                                        <p class="card-text">{{ $opdracht->start_date }}</p>
+                                        <p class="card-text">{{ $opdracht->end_date }}</p>
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>

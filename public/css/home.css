@@ -1,3 +1,7 @@
+.card {
+    grid-auto-rows: auto;
+}
+
 .statistic {
     height: 342px;
 }
