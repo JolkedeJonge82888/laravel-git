@@ -1,7 +1,10 @@
+.statistic {
+    height: 342px;
+}
+
 .switch-content {
     list-style-type: none;
-    margin: auto;
-    margin-bottom: 30px;
+    margin: auto auto 30px;
     width: 90%;
     height: auto;
     text-align: center;
@@ -13,7 +16,7 @@
     max-width: 400px;
 }
 
-.switch-content>li:hover {
+ul>li:hover {
     cursor: pointer;
 }
 
@@ -44,7 +47,7 @@
     height: 3px;
     bottom: 0;
     left: 0;
-    background: #b0b0b0;
+    background: #c3c3c3;
     visibility: hidden;
     border-radius: 5px;
     transform: scaleX(0);

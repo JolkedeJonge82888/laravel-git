@@ -34,21 +34,17 @@
     </section>
 
     <section id="stats" class="pb-5">
-        <nav>
-            <ul class="switch-content">
-                <li><h2><a onclick="switch1()">Statistics 1</a></h2></li>
-                <li><h2><a onclick="switch2()">Statistics 2</a></h2></li>
-            </ul>
-        </nav>
+
         <div class="container">
             <h5 class="section-title h1">STATISTICS</h5>
-            <div id="switch-content1" style="display: flex" class="row">
-{{--                <nav>--}}
-{{--                    <ul>--}}
-{{--                        <li class="underline-hover current"><a href="">Statistic 1</a></li>--}}
-{{--                        <li class="underline-hover"><a href="">Statistic 2</a></li>--}}
-{{--                    </ul>--}}
-{{--                </nav>--}}
+            <nav>
+                <ul class="switch-content">
+                    <li><h2><a onclick="switch1()">Statistics 1</a></h2></li>
+                    <li><h2><a onclick="switch2()">Statistics 2</a></h2></li>
+                </ul>
+            </nav>
+            <div id="switch-content1" style="display: flex" class="row statistic">
+
                 @foreach ($teams as $team)
 
                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -59,7 +55,7 @@
                                         <div class="card-body text-center">
                                             <h4 class="card-title">{{ $team->name }}</h4>
                                             <p class="card-text">Points: {{ $team->point }}</p>
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                            <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +65,7 @@
 
                 @endforeach
             </div>
-            <div id="switch-content2" style="display: none;" class="row">
+            <div id="switch-content2" style="display: none;" class="row statistic">
                 <script>
 
                     google.charts.load("current", {packages:['corechart']});
@@ -93,7 +89,7 @@
                         chart.draw(data, options);
                     }
                 </script>
-                <div id="chart_div"></div>
+                <div id="chart_div" class="chart-div"></div>
 
             </div>
         </div>
