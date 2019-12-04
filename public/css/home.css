@@ -1,5 +1,36 @@
-.card {
-    grid-auto-rows: auto;
+.btn {
+    width: 20%;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    transform: skew(8deg);
+    transition: .3s;
+}
+
+.btn-danger {
+    transform: skew(-8deg);
+    background-color: #fff;
+    color: #007b5e;
+}
+
+.btn-danger:hover {
+    background-color: #FF0000;
+    color: #007b5e;
+}
+
+.btn-primary {
+    transform: skew(-8deg);
+    background-color: #fff;
+    color: #007b5e;
+}
+
+.btn-primary:hover {
+    background-color: #007b5e;
+    color: #FFF;
+}
+
+.row {
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .statistic {
