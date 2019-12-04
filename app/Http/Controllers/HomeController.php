@@ -20,6 +20,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+
+
     }
 
     /**
@@ -30,7 +33,13 @@ class HomeController extends Controller
 
     public function index()
     {
+        if (auth()->user()->isDocent()) {// do your magic here
+            return redirect('/docent');
+        }
 
+        if (auth()->user()->isAdmin()) {// do your magic here
+            return redirect('/admin');
+        }
 
         DB::enableQueryLog(); // Enable query log
         $team = Users::find(Auth::user()->id)->Team->pluck('id')->first();

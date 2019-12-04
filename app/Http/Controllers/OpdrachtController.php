@@ -23,7 +23,7 @@ class OpdrachtController extends Controller
      */
     public function create()
     {
-        //
+        return view('opdracht.opdracht-create');
     }
 
     /**
@@ -31,7 +31,7 @@ class OpdrachtController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
         //
     }
@@ -42,9 +42,8 @@ class OpdrachtController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show()
     {
-        //
     }
 
     /**
@@ -64,7 +63,7 @@ class OpdrachtController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         //
     }
