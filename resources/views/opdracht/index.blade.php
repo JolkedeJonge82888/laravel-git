@@ -26,6 +26,13 @@
                                         <p class="card-text">{{ $opdracht->start_date }}</p>
                                         <p class="card-text">{{ $opdracht->end_date }}</p>
                                         @docent<a href="{{ route('opdracht.edit',$opdracht->id)}}" class="btn btn-primary">Edit</a>@enddocent
+                                        @docent
+                                            <form action="{{ route('opdracht.destroy', $opdracht->id)}}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                            </form>
+                                        @enddocent
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>

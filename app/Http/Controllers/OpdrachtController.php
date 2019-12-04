@@ -82,7 +82,7 @@ class OpdrachtController extends Controller
     public function edit($id)
     {
         if(auth()->user()->isDocent()) {
-            $opdracht = Opdracht::find($id)->Description();
+            $opdracht = Opdracht::find($id);
 
             return view('opdracht.edit')->with('opdracht', $opdracht);
         } else {
@@ -114,7 +114,10 @@ class OpdrachtController extends Controller
     public function destroy($id)
     {
         if(auth()->user()->isDocent()) {
+            $share = Opdracht::find($id);
+            $share->delete();
 
+            return redirect('/opdracht')->with('success', 'Opdracht has been deleted Successfully');
 
         } else {
             return redirect('/opdracht');

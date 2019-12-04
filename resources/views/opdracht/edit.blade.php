@@ -25,7 +25,7 @@
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
-                    <label for="name">>Opdracht Title:</label>
+                    <label for="name">Opdracht Title:</label>
                     <input type="text" class="form-control" name="opdracht_title" value={{ $opdracht->title }}/>
                 </div>
                 <div class="form-group">
