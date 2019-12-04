@@ -69,7 +69,7 @@ class OpdrachtController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show()
+    public function show($id)
     {
     }
 
@@ -84,7 +84,7 @@ class OpdrachtController extends Controller
         if(auth()->user()->isDocent()) {
             $opdracht = Opdracht::find($id)->Description;
 
-            return view('opdracht.edit', compact('opdracht'));
+            return view('opdracht.edit')->with('opdracht', $opdracht);
         } else {
             return redirect('/opdracht');
         }
