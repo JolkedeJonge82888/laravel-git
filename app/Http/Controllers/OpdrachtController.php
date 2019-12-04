@@ -82,7 +82,7 @@ class OpdrachtController extends Controller
     public function edit($id)
     {
         if(auth()->user()->isDocent()) {
-            $opdracht = Opdracht::find($id)->Description;
+            $opdracht = Opdracht::find($id)->Description();
 
             return view('opdracht.edit')->with('opdracht', $opdracht);
         } else {
