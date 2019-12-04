@@ -13,7 +13,7 @@
             </div><br />
         @endif
     </div>
-
+    <div class="row">
             @foreach($opdrachts as $opdracht)
                 <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="image-flip">
@@ -25,7 +25,7 @@
                                         <p class="card-text">{{ $opdracht->description->text }}</p>
                                         <p class="card-text">{{ $opdracht->start_date }}</p>
                                         <p class="card-text">{{ $opdracht->end_date }}</p>
-                                        @auth('is_docent')<a href="{{ route('opdracht.edit',$opdracht->id)}}" class="btn btn-primary">Edit</a>@endauth
+                                        @docent<a href="{{ route('opdracht.edit',$opdracht->id)}}" class="btn btn-primary">Edit</a>@enddocent
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
@@ -34,5 +34,5 @@
                     </div>
                 </div>
             @endforeach
-
+    </div>
 @endsection
