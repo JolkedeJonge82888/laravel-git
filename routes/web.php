@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/opdracht', 'OpdrachtController@index')->name('opdracht');
+
 
 Route::get('/docent', 'DocentController@docent')
     ->middleware('is_docent')
@@ -30,10 +30,12 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('/opdracht', 'OpdrachtController@index')->name('Opdracht');
+
 Route::get('opdracht/create', 'OpdrachtController@create')
     ->middleware('is_docent')
-    ->name('Create Opdracht');
+    ->name('CreateOpdracht');
 
 Route::post('opdracht/create', 'OpdrachtController@store')
     ->middleware('is_docent')
-    ->name('Create Opdracht');
+    ->name('CreateOpdracht');

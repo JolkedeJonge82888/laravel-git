@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="price">Opdracht Description:</label>
-                    <textarea class="form-control" rows="5" name="opdracht_title"></textarea>
+                    <textarea class="form-control" rows="5" name="opdracht_description"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="quantity">Opdracht Start Date:</label>
