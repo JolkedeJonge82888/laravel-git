@@ -30,12 +30,6 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/opdracht', 'OpdrachtController@index')->name('Opdracht');
 
-Route::get('opdracht/create', 'OpdrachtController@create')
-    ->middleware('is_docent')
-    ->name('CreateOpdracht');
 
-Route::post('opdracht/create', 'OpdrachtController@store')
-    ->middleware('is_docent')
-    ->name('CreateOpdracht');
+Route::resource('opdracht', 'OpdrachtController');
