@@ -18,7 +18,8 @@ class OpdrachtController extends Controller
      */
     public function index()
     {
-        //
+        $opdrachts = Opdracht::with('Description')->get();
+        return view('opdracht.opdracht')->with('opdrachts', $opdrachts);
     }
 
     /**
@@ -47,7 +48,7 @@ class OpdrachtController extends Controller
             'end-date' => $request->input('opdracht_enddate'),
             'description_id' => $description->id,
         ]);
-        return redirect()->action('OpdrachtController@index');
+        return redirect('/opdracht')->with('success', 'Opdracht has been added');
     }
 
     /**
