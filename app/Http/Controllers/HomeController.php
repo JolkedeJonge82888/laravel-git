@@ -41,7 +41,7 @@ class HomeController extends Controller
             return redirect('/admin');
         }
 
-        DB::enableQueryLog(); // Enable query log
+        //DB::enableQueryLog(); // Enable query log
         $team = Users::find(Auth::user()->id)->Team->pluck('id')->first();
         //dd($team);
         if(is_null($team)) {

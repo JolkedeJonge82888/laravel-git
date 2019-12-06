@@ -48,4 +48,8 @@ class User extends Authenticatable
         return $this->role === self::ADMIN_TYPE;
     }
 
+    public function HasOpdracht()    {
+        return $this->id === Users::find($this->id)->Opdracht;
+    }
+
 }

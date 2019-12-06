@@ -9,8 +9,8 @@ class Opdracht extends Model
 
     protected $table = 'opdracht';
     public $timestamps = true;
-    protected $fillable = array('title', 'description_id', 'start_date', 'end_date', 'klant_id');
-    protected $visible = array('id','title', 'description_id', 'start_date', 'end_date', 'klant_id');
+    protected $fillable = array('title', 'description_id', 'start_date', 'end_date');
+    protected $visible = array('id','title', 'description_id', 'start_date', 'end_date');
 
     public function Description()
     {

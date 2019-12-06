@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\UserOpdracht;
+use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Opdracht;
 use App\Description;
+use Illuminate\Support\Facades\DB;
 
 
 class OpdrachtController extends Controller
@@ -56,13 +59,18 @@ class OpdrachtController extends Controller
 
             $description = Description::create(['text' => $request->input('opdracht_description')]);
 
-            Opdracht::insert([
-                'klant_id' => Auth::user()->id,
+            $opdrachtID = Opdracht::insertGetId([
                 'title' => $request->input('opdracht_title'),
                 'start_date' => $request->input('opdracht_startdate'),
                 'end_date' => $request->input('opdracht_enddate'),
                 'description_id' => $description->id,
             ]);
+
+            UserOpdracht::insert([
+                'users_id' => Auth::user()->id,
+                'opdracht_id' => $opdrachtID,
+            ]);
+
             return redirect('/opdracht')->with('success', 'Opdracht has been added');
         } else {
             return redirect('/opdracht');
@@ -77,6 +85,12 @@ class OpdrachtController extends Controller
      */
     public function show($id)
     {
+
+        $opdracht = Opdracht::find($id);
+        $klant = Opdracht::find($id)->Users->pluck('name')->first();
+
+        return view('opdracht.show')->with('opdracht', $opdracht)->with('klant', $klant);
+
     }
 
     /**
@@ -123,7 +137,7 @@ class OpdrachtController extends Controller
             $opdracht->save();
             $description->save();
 
-            return redirect('/opdracht')->with('success', 'Stock has been updated');
+            return redirect('/opdracht')->with('success', 'Opdracht has been updated');
 
 
         } else {

@@ -33,7 +33,7 @@
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                             </form>
                                         @enddocent
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                        <a href="{{ route('opdracht.show', $opdracht->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
