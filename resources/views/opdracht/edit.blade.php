@@ -39,7 +39,7 @@
 
                 <div class="form-group">
                     <label for="quantity">Opdracht Start Date:</label>
-                    <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ $opdracht->start_date }}"/>
+                    <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ $opdracht->end_date }}"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>

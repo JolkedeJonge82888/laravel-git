@@ -50,6 +50,7 @@ class  LoginController extends Controller
     }
     protected function attemptLogin(Request $request)
     {
+        $remember = ($request->input('remember')) ? true : false;
         $credentials = $request->only($this->username(), 'password');
         $username = $credentials[$this->username()];
         $password = $credentials['password'];
@@ -59,7 +60,7 @@ class  LoginController extends Controller
         // [#14](https://github.com/jotaelesalinas/laravel-simple-ldap-auth/issues/14):
         // Adldap::auth()->bind($username, $password);
         // $userdn is not working for me, since it concatenates
-        if(Adldap::auth()->attempt($username, $password, $bindAsUser = true)) {
+        if(Adldap::auth()->attempt($username, $password, $remember)) {
             // the user exists in the LDAP server, with the provided password
             $user = \App\User::where($this->username(), $username)->first();
             if (!$user) {

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Opdracht;
 
 
 class User extends Authenticatable
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'remember_token',
     ];
 
     /**
@@ -38,6 +39,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
+
     const DOCENT_TYPE = 'Docent';
     const ADMIN_TYPE = 'Admin';
 
@@ -48,8 +64,8 @@ class User extends Authenticatable
         return $this->role === self::ADMIN_TYPE;
     }
 
-    public function HasOpdracht()    {
-        return $this->id === Users::find($this->id)->Opdracht;
+    public function hasOpdracht($id)    {
+        return $this->id === Opdracht::find($id)->Users->pluck('id')->first();
     }
 
 }

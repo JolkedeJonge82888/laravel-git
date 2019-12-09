@@ -19,6 +19,12 @@ class OpdrachtController extends Controller
      *
      * @return Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $this->middleware('auth');
@@ -52,9 +58,9 @@ class OpdrachtController extends Controller
 
             $request->validate([
                 'opdracht_title'=>'required|string|min:8|max:255',
-                'opdracht_startdate'=> 'required|date',
-                'opdracht_enddate'=> 'required|date',
-                'opdracht_description' => 'required|string'
+                'opdracht_startdate'=> 'required|date|after:yesterday',
+                'opdracht_enddate'=> 'required|date|after:opdracht_startdate',
+                'opdracht_description' => 'required|string',
             ]);
 
             $description = Description::create(['text' => $request->input('opdracht_description')]);
@@ -122,9 +128,9 @@ class OpdrachtController extends Controller
 
             $request->validate([
                 'opdracht_title'=>'required|string|min:8|max:255',
-                'opdracht_startdate'=> 'required|date',
-                'opdracht_enddate'=> 'required|date',
-                'opdracht_description' => 'required|string'
+                'opdracht_startdate'=> 'required|date|after:yesterday',
+                'opdracht_enddate'=> 'required|date|after:opdracht_startdate',
+                'opdracht_description' => 'required|string',
             ]);
 
             $opdracht = Opdracht::find($id);
@@ -132,7 +138,7 @@ class OpdrachtController extends Controller
             $opdracht->title = $request->input('opdracht_title');
             $opdracht->start_date = $request->input('opdracht_startdate');
             $opdracht->end_date = $request->input('opdracht_enddate');
-            $description = Description::find($opdracht->klant_id);
+            $description = Description::find($opdracht->description_id);
             $description->text = $request->input('opdracht_description');
             $opdracht->save();
             $description->save();
@@ -154,8 +160,9 @@ class OpdrachtController extends Controller
     public function destroy($id)
     {
         if(auth()->user()->isDocent()) {
-            $share = Opdracht::find($id);
-            $share->delete();
+
+            $opdracht = Opdracht::find($id)->Description;
+            $opdracht->delete();
 
             return redirect('/opdracht')->with('success', 'Opdracht has been deleted Successfully');
 
