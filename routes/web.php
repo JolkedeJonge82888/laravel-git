@@ -30,6 +30,5 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-
-
+Route::get('gesprek/{id}', 'OpdrachtController@gesprek')->name('gesprek');
 Route::resource('opdracht', 'OpdrachtController');

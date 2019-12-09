@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gesprek;
 use App\TeamOpdracht;
+use App\User;
 use App\UserOpdracht;
 use App\Users;
 use Illuminate\Http\Request;
@@ -29,6 +30,9 @@ class OpdrachtController extends Controller
 
     public function index()
     {
+//        DB::enableQueryLog(); // Enable query log
+//            Users::find(Auth::user()->id)->Team->pluck('id')->first();
+//        dd(DB::getQueryLog());
         $this->middleware('auth');
         $opdrachts = Opdracht::with('Description')->get();
         return view('opdracht.index')->with('opdrachts', $opdrachts);
@@ -178,10 +182,10 @@ class OpdrachtController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function addGesprek($id)
+    public function gesprek($id)
     {
         Gesprek::insert([
-            'team_id' => User::with('Team')->pluck('id')->first(),
+            'team_id' => Users::find(Auth::user()->id)->Team->pluck('id')->first(),
             'opdracht_id' => $id,
             'check' => 0,
         ]);

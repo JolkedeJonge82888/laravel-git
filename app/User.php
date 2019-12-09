@@ -68,4 +68,8 @@ class User extends Authenticatable
         return $this->id === Opdracht::find($id)->Users->pluck('id')->first();
     }
 
+    public function hasGesprek($id)    {
+        return $this->id === Opdracht::find($id)->TeamGesprek->pluck('id')->first();
+    }
+
 }
