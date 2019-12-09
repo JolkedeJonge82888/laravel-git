@@ -22,4 +22,14 @@ class Opdracht extends Model
         return $this->belongsToMany('App\Users', 'user-opdracht');
     }
 
+    public function TeamOpdracht()
+    {
+        return $this->belongsToMany(Team::class, 'team-opdracht');
+    }
+
+    public function TeamGesprek()
+    {
+        return $this->belongsToMany(Team::class, 'gesprek');
+    }
+
 }

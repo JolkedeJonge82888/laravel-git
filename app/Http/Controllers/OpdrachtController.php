@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Gesprek;
+use App\TeamOpdracht;
 use App\UserOpdracht;
 use App\Users;
 use Illuminate\Http\Request;
@@ -169,5 +171,22 @@ class OpdrachtController extends Controller
         } else {
             return redirect('/opdracht');
         }
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function addGesprek($id)
+    {
+        Gesprek::insert([
+            'team_id' => User::with('Team')->pluck('id')->first(),
+            'opdracht_id' => $id,
+            'check' => 0,
+        ]);
+
+
+        return redirect('/opdracht/'.$id)->with('success', 'Klant gesprek is aan gevraagt!');
     }
 }

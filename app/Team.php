@@ -16,4 +16,16 @@ class Team extends Model
         return $this->belongsToMany(Users::class, 'team-user');
     }
 
+
+    public function OpdrachtTeam()
+    {
+        return $this->belongsToMany(Opdracht::class, 'team-opdracht');
+    }
+
+    public function OpdrachtGesprek()
+    {
+        return $this->belongsToMany(Opdracht::class, 'gesprek');
+    }
+
+
 }
