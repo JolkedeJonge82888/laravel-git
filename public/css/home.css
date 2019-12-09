@@ -6,24 +6,34 @@
     transition: .3s;
 }
 
-.btn-danger {
+.underlined:after{
+    display:block;
+    content:"";
+    margin-top:10px;
+    border-top:1px solid rgba(0, 0, 0, 0.3);
+    width: 200px;
+    height:6px;
+    background: radial-gradient(ellipse at 50% -100%,  rgba(0,0,0,0.6) 0,rgba(255,255,255,0) 50%); /* W3C */
+}
+
+.card-body .btn-danger {
     transform: skew(-8deg);
     background-color: #fff;
     color: #007b5e;
 }
 
-.btn-danger:hover {
+.card-body .btn-danger:hover {
     background-color: #FF0000;
-    color: #007b5e;
+    color: #FFFFFF;
 }
 
-.btn-primary {
+.card-body .btn-primary {
     transform: skew(-8deg);
     background-color: #fff;
     color: #007b5e;
 }
 
-.btn-primary:hover {
+.card-body .btn-primary:hover {
     background-color: #007b5e;
     color: #FFF;
 }
@@ -33,6 +43,8 @@
     padding-right: 25px;
 }
 
+
+/*  statistic styling   */
 .statistic {
     height: 342px;
 }
