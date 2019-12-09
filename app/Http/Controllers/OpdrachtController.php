@@ -154,8 +154,9 @@ class OpdrachtController extends Controller
     public function destroy($id)
     {
         if(auth()->user()->isDocent()) {
-            $share = Opdracht::find($id);
-            $share->delete();
+
+            $opdracht = Opdracht::find($id)->Description;
+            $opdracht->delete();
 
             return redirect('/opdracht')->with('success', 'Opdracht has been deleted Successfully');
 

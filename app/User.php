@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Opdracht;
 
 
 class User extends Authenticatable
@@ -48,8 +49,8 @@ class User extends Authenticatable
         return $this->role === self::ADMIN_TYPE;
     }
 
-    public function HasOpdracht()    {
-        return $this->id === Users::find($this->id)->Opdracht;
+    public function hasOpdracht($id)    {
+        return $this->id === Opdracht::find($id)->Users->pluck('id')->first();
     }
 
 }
