@@ -23,20 +23,20 @@
             <form method="POST" action="{{ route('opdracht.store') }}">
                 <div class="form-group">
                     @csrf
-                    <label for="name">Opdracht Title:</label>
-                    <input type="text" class="form-control" name="opdracht_title"/>
+                    <label class="@if($errors->has('opdracht_title')) text-danger @endif" for="name">* Opdracht Title:</label>
+                    <input type="text" class="form-control @if($errors->has('opdracht_title')) text-danger border border-danger @endif" name="opdracht_title" value="{{ old('opdracht_title') }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="price">Opdracht Description:</label>
-                    <textarea class="form-control" rows="5" name="opdracht_description"></textarea>
+                    <label for="price" class="@if($errors->has('opdracht_description')) text-danger @endif">* Opdracht Description:</label>
+                    <textarea class="form-control @if($errors->has('opdracht_description')) text-danger border border-danger @endif" rows="5" name="opdracht_description">{{ old('opdracht_description') }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Opdracht Start Date:</label>
-                    <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="opdracht_startdate"/>
+                    <label for="quantity" class="@if($errors->has('opdracht_startdate')) text-danger @endif">* Opdracht Start Date:</label>
+                    <input type="date" class="form-control @if($errors->has('opdracht_startdate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_startdate" value="{{ old('opdracht_startdate') }}"/>
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Opdracht End Date:</label>
-                    <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="opdracht_enddate"/>
+                    <label for="quantity" class="@if($errors->has('opdracht_enddate')) text-danger @endif">* Opdracht Close Date:</label>
+                    <input type="date" class="form-control @if($errors->has('opdracht_enddate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ old('opdracht_enddate') }}" />
                 </div>
                 <button type="submit" class="btn btn-primary">Add Opdracht</button>
             </form>
