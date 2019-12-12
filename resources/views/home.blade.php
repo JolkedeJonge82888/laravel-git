@@ -117,5 +117,12 @@
         }
 
     </script>
+    @else
+        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+            <ul>
+                <li>Ask your teacher to be added in a team!</li>
+            </ul>
+        </div>
 @endisset
+
 @endsection
