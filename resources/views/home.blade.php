@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @isset($users, $teams)
+    @if(isset($users) && isset($teams))
     <section id="team" class="pb-5">
         <div class="container">
 
@@ -118,11 +118,13 @@
 
     </script>
     @else
-        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
-            <ul>
-                <li>Ask your teacher to be added in a team!</li>
-            </ul>
+        <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
+            <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
+                No Team</div>
+
+            <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
+                Ask your teacher to be added in a team!</div>
         </div>
-@endisset
+@endif
 
 @endsection
