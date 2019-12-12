@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Team;
+use App\Opdracht;
 
 class Users extends Model
 {
@@ -16,5 +17,10 @@ class Users extends Model
     public function Team()
     {
         return $this->belongsToMany(Team::class, 'team-user');
+    }
+
+    public function Opdracht()
+    {
+        return $this->belongsToMany(Opdracht::class, 'user-opdracht');
     }
 }

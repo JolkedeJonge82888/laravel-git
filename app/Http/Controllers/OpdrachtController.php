@@ -31,7 +31,7 @@ class OpdrachtController extends Controller
     public function index()
     {
 //        DB::enableQueryLog(); // Enable query log
-//        dd(Opdracht::find(2)->TeamGesprek->pluck('id')->first());
+//        dd();
 //        dd(DB::getQueryLog());
         $this->middleware('auth');
         $opdrachts = Opdracht::with('Description')->orderBy('start_date', 'ASC')->paginate(6);
@@ -97,7 +97,7 @@ class OpdrachtController extends Controller
      */
     public function show($id)
     {
-        if(empty($id) || $id == '' || isset($id) || $id == null) {
+        if(empty($id) || $id == '' || !isset($id) || $id == null) {
             return redirect('/opdracht');
         } else {
             $opdracht = Opdracht::find($id);
@@ -117,12 +117,17 @@ class OpdrachtController extends Controller
      */
     public function edit($id)
     {
-        if(auth()->user()->isDocent()) {
-            $opdracht = Opdracht::find($id);
-
-            return view('opdracht.edit')->with('opdracht', $opdracht);
-        } else {
+        if(empty($id) || $id == '' || !isset($id) || $id == null) {
             return redirect('/opdracht');
+        } else {
+            if (auth()->user()->isDocent()) {
+                $opdracht = Opdracht::find($id);
+
+                return view('opdracht.edit')->with('opdracht', $opdracht);
+            } else {
+                return redirect('/opdracht');
+            }
+
         }
     }
 
