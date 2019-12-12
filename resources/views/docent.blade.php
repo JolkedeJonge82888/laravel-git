@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@php
+//toDo Remove this and Fix title
+@endphp
 @section('content')
     @isset($gespreken)
         @foreach($gespreken as $gesprek)

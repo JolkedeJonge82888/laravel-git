@@ -8,7 +8,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Add Opdracht
+            Add Assignment
         </div>
         <div class="card-body">
 

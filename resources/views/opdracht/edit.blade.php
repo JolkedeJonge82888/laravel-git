@@ -9,7 +9,7 @@
     </style>
     <div class="card uper">
         <div class="card-header">
-            Edit Opdracht
+            Edit Assignment
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -26,7 +26,7 @@
                 @csrf
 
                 <div class="form-group">
-                    <label class="@if($errors->has('opdracht_title')) text-danger @endif" for=" name">Opdracht Title:</label>
+                    <label class="@if($errors->has('opdracht_title')) text-danger @endif" for=" name">Assignment Title:</label>
                     <input type="text" class="form-control @if($errors->has('opdracht_title')) text-danger border border-danger @endif" name="opdracht_title" value="{{ $opdracht->title }}" />
                     <br>
                     @if ($errors->has('opdracht_title'))
@@ -40,7 +40,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label class="@if($errors->has('opdracht_description')) text-danger @endif" for="price">Opdracht Description:</label>
+                    <label class="@if($errors->has('opdracht_description')) text-danger @endif" for="price">Assignment Description:</label>
                     <textarea class="form-control @if($errors->has('opdracht_description')) text-danger border border-danger @endif" rows="5" name="opdracht_description">{{ $opdracht->description->text }}</textarea>
                     <br>
                     @if ($errors->has('opdracht_description'))
@@ -54,7 +54,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label class="@if($errors->has('opdracht_startdate')) text-danger @endif" for="quantity">Opdracht Start Date:</label>
+                    <label class="@if($errors->has('opdracht_startdate')) text-danger @endif" for="quantity">Assignment Start Date:</label>
                     <input type="date" class="form-control @if($errors->has('opdracht_startdate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_startdate" value="{{ $opdracht->start_date }}"/>
                     <br>
                     @if ($errors->has('opdracht_startdate'))
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="@if($errors->has('opdracht_enddate')) text-danger @endif" for="quantity">Opdracht Start Date:</label>
+                    <label class="@if($errors->has('opdracht_enddate')) text-danger @endif" for="quantity">Assignment Start Date:</label>
                     <input type="date" class="form-control @if($errors->has('opdracht_enddate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ $opdracht->end_date }}"/>
                     <br>
                     @if ($errors->has('opdracht_enddate'))

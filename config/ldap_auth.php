@@ -233,7 +233,7 @@ return [
         //'objectguid' => 'objectguid',
         'role' => 'memberof', // Indien bevat CN=Docenten MT,OU=Docenten,DC=ict,DC=lab,DC=locals --> dan ben je een "Docent MT"
         // 'phone' => 'telephonenumber', // Zit zo te zien niet in onze AD
-        // ToDo Check if we can map the User Groups to the role column.
+
         // displayname {Arthur Steijlen}
         // memberof {Array -> CN=Docenten MT,OU=Docenten,DC=ict,DC=lab,DC=locals}
         // name {Arthur Steijlen}
