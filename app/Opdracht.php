@@ -14,12 +14,12 @@ class Opdracht extends Model
 
     public function Description()
     {
-        return $this->belongsTo('App\Description');
+        return $this->belongsTo(Description::class);
     }
 
     public function Users()
     {
-        return $this->belongsToMany('App\Users', 'user-opdracht');
+        return $this->belongsToMany(Users::class, 'user-opdracht');
     }
 
     public function TeamOpdracht()

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/docent', 'DocentController@docent')
+Route::get('/teacher', 'DocentController@docent')
     ->middleware('is_docent')
     ->name('Docent');
 

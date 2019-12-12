@@ -33,7 +33,7 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->isDocent()) {// do your magic here
-            return redirect('/docent');
+            return redirect('/teacher');
         }
 
         if (auth()->user()->isAdmin()) {// do your magic here

@@ -37,7 +37,7 @@ class DocentController extends Controller
         if(auth()->user()->isDocent()) {
 
         } else {
-            return redirect('/docent');
+            return redirect('/teacher');
         }
     }
 
