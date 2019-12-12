@@ -23,7 +23,6 @@
                             @if(!auth()->user()->isDocent())
                                 @if(!auth()->user()->hasGesprek($opdracht->id))
                                     <a href="{{ route('gesprek', $opdracht->id)}}" class="btn btn-primary btn-sm">Vraag klantgesprek</a>
-
                                 @else
                                     <p class=" btn-primary ">Gesprek is aan gevraagt</p>
                                 @endif

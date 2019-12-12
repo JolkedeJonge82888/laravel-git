@@ -31,7 +31,7 @@ class OpdrachtController extends Controller
     public function index()
     {
 //        DB::enableQueryLog(); // Enable query log
-//            Users::find(Auth::user()->id)->Team->pluck('id')->first();
+//        dd(Opdracht::find(2)->TeamGesprek->pluck('id')->first());
 //        dd(DB::getQueryLog());
         $this->middleware('auth');
         $opdrachts = Opdracht::with('Description')->get();
