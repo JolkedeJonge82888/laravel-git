@@ -14,7 +14,14 @@
             </div><br />
         @endif
     </div>
+    @docent
+    <div class="container">
+        <a href="{{ route('opdracht.create') }}" class="btn btn-primary">Create Assignment</a>
+    </div>
+    <br>
+    @enddocent
     <div class="row">
+
             @foreach($opdrachts as $opdracht)
 
                 @if(!auth()->user()->hasOpdracht($opdracht->id))

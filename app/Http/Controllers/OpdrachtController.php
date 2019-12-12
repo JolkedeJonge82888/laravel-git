@@ -97,11 +97,15 @@ class OpdrachtController extends Controller
      */
     public function show($id)
     {
+        if(empty($id) || $id == '' || isset($id) || $id == null) {
+            return redirect('/opdracht');
+        } else {
+            $opdracht = Opdracht::find($id);
+            $klant = Opdracht::find($id)->Users->pluck('name')->first();
 
-        $opdracht = Opdracht::find($id);
-        $klant = Opdracht::find($id)->Users->pluck('name')->first();
+            return view('opdracht.show')->with('opdracht', $opdracht)->with('klant', $klant);
+        }
 
-        return view('opdracht.show')->with('opdracht', $opdracht)->with('klant', $klant);
 
     }
 

@@ -11,68 +11,66 @@
             Add Opdracht
         </div>
         <div class="card-body">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div><br />
-            @endif
+
             <form method="POST" action="{{ route('opdracht.store') }}">
                 <div class="form-group">
                     @csrf
                     <label class="@if($errors->has('opdracht_title')) text-danger @endif" for="name">* Opdracht Title:</label>
                     <input type="text" class="form-control @if($errors->has('opdracht_title')) text-danger border border-danger @endif" name="opdracht_title" value="{{ old('opdracht_title') }}"/>
-                @if ($errors->any())
-                        <div class="alert alert-danger">
+                    <br>
+                @if ($errors->has('opdracht_title'))
+                        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
                             <ul>
                                 @if ($errors->has('opdracht_title'))
-                                    <li>{{ $error }}</li>
+                                    <li>{{ $errors->first('opdracht_title') }}</li>
                                 @endif
                             </ul>
-                        </div><br />
+                        </div>
                     @endif
                 </div>
                 <div class="form-group">
                     <label for="price" class="@if($errors->has('opdracht_description')) text-danger @endif">* Opdracht Description:</label>
                     <textarea class="form-control @if($errors->has('opdracht_description')) text-danger border border-danger @endif" rows="5" name="opdracht_description">{{ old('opdracht_description') }}</textarea>
-{{--                @if ($errors->any())--}}
-{{--                        <div class="alert alert-danger">--}}
-{{--                            <ul>--}}
-{{--                                @foreach ($errors->has('opdracht_description') as $error)--}}
-{{--                                    <li>{{ $error }}</li>--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
-{{--                        </div><br />--}}
-{{--                    @endif--}}
+                    <br>
+                    @if ($errors->has('opdracht_description'))
+                        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+                            <ul>
+                                @if ($errors->has('opdracht_description'))
+                                    <li>{{ $errors->first('opdracht_description') }}</li>
+                                @endif
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="form-group">
-{{--                    @if ($errors->any())--}}
-{{--                        <div class="alert alert-danger">--}}
-{{--                            <ul>--}}
-{{--                                @foreach ($errors->has('opdracht_startdate') as $error)--}}
-{{--                                    <li>{{ $error }}</li>--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
-{{--                        </div><br />--}}
-{{--                    @endif--}}
+
                     <label for="quantity" class="@if($errors->has('opdracht_startdate')) text-danger @endif">* Opdracht Start Date:</label>
                     <input type="date" class="form-control @if($errors->has('opdracht_startdate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_startdate" value="{{ old('opdracht_startdate') }}"/>
+                    <br>
+                    @if ($errors->has('opdracht_startdate'))
+                        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+                            <ul>
+                                @if ($errors->has('opdracht_startdate'))
+                                    <li>{{ $errors->first('opdracht_startdate') }}</li>
+                                @endif
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <div class="form-group">
-{{--                    @if ($errors->any())--}}
-{{--                        <div class="alert alert-danger">--}}
-{{--                            <ul>--}}
-{{--                                @foreach ($errors->has('opdracht_enddate') as $error)--}}
-{{--                                    <li>{{ $error }}</li>--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
-{{--                        </div><br />--}}
-{{--                    @endif--}}
+
                     <label for="quantity" class="@if($errors->has('opdracht_enddate')) text-danger @endif">* Opdracht Close Date:</label>
                     <input type="date" class="form-control @if($errors->has('opdracht_enddate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ old('opdracht_enddate') }}" />
+                    <br>
+                    @if ($errors->has('opdracht_enddate'))
+                        <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+                            <ul>
+                                @if ($errors->has('opdracht_enddate'))
+                                    <li>{{ $errors->first('opdracht_enddate') }}</li>
+                                @endif
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Add Opdracht</button>
             </form>
