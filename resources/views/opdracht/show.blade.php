@@ -16,8 +16,8 @@
                         <div class="card-body" style="width: 90%; margin: auto;">
 
                             <p class="card-text">{{ $opdracht->description->text }}</p>
-                            <p class="card-text underlined" style="width:200px;">Start date: {{ $opdracht->start_date }}</p>
-                            <p class="card-text underlined" style="width:200px;">Close date: {{ $opdracht->end_date }}</p>
+                            <p class="card-text underlined" style="width:200px;">Start date: {{ date('d-m-Y', strtotime($opdracht->start_date)) }}</p>
+                            <p class="card-text underlined" style="width:200px;">Close date: {{ date('d-m-Y', strtotime($opdracht->end_date)) }}</p>
                             <p class="card-text">Opdrachtgever: {{ $klant }}</p>
 
                             @if(!auth()->user()->isDocent())

@@ -34,7 +34,7 @@ class OpdrachtController extends Controller
 //        dd(Opdracht::find(2)->TeamGesprek->pluck('id')->first());
 //        dd(DB::getQueryLog());
         $this->middleware('auth');
-        $opdrachts = Opdracht::with('Description')->get();
+        $opdrachts = Opdracht::with('Description')->orderBy('start_date', 'ASC')->paginate(6);
         return view('opdracht.index')->with('opdrachts', $opdrachts);
     }
 
