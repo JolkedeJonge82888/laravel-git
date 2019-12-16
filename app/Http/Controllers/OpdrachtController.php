@@ -38,8 +38,7 @@ class OpdrachtController extends Controller
 
 
         if(auth()->user()->isDocent()) {
-            $opdrachten = Users::find(Auth::user()->id)->Opdracht;
-
+            dd($opdrachten = Users::find(Auth::user()->id)->Opdracht);
 
 
             return view('opdracht.index')->with('opdrachts', $opdrachten);
