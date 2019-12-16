@@ -41,6 +41,7 @@ class OpdrachtController extends Controller
             $opdrachten = Users::find(Auth::user()->id)->Opdracht;
 
 
+
             return view('opdracht.index')->with('opdrachts', $opdrachten);
         } else {
 
