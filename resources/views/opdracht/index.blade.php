@@ -21,7 +21,7 @@
     <br>
     @enddocent
     <div class="row">
-
+        @isset($opdrachts)
             @foreach($opdrachts as $opdracht)
 
                 @if(!auth()->user()->hasOpdracht($opdracht->id) || !auth()->user()->isDocent())
@@ -120,11 +120,12 @@
                     @endif
                 @enddocent
             @endforeach
+
             <div class="fixed-bottom" style="margin-bottom: 50px;">
                 <div class="container col-xs-12 col-sm-6 col-md-4">
                     {{ $opdrachts->render() }}
                 </div>
             </div>
-
+        @endisset
     </div>
 @endsection
