@@ -126,6 +126,6 @@
                     {{ $opdrachts->render() }}
                 </div>
             </div>
-        @endisset
+@endisset
     </div>
 @endsection

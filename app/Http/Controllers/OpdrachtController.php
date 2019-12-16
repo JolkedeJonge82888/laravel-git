@@ -8,6 +8,7 @@ use App\User;
 use App\UserOpdracht;
 use App\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 use App\Opdracht;
@@ -38,12 +39,18 @@ class OpdrachtController extends Controller
 
 
         if(auth()->user()->isDocent()) {
-            dd($opdrachten = Users::find(Auth::user()->id)->Opdracht);
+            $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
 
+            foreach($opdrachten as $opdracht)
+            {
+                $opdrachtD = Opdracht::find($opdracht)->with('Description')->orderBy('start_date', 'asc')->paginate(6);
 
-            return view('opdracht.index')->with('opdrachts', $opdrachten);
+            }
+
+            return view('opdracht.index')->with('opdrachts', $opdrachtD);
         } else {
-
+            $opdrachtD = Opdracht::with('Description')->whereDate('start_date', '<=', Carbon::today())->whereDate('end_date', '>=', Carbon::today())->orderBy('start_date', 'asc')->paginate(6);
+            return view('opdracht.index')->with('opdrachts', $opdrachtD);
         }
 
 
