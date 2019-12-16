@@ -24,8 +24,30 @@ class DocentController extends Controller
             return view('docent')->with('gespreken', $gespreken);
         }
         //dd(DB::getQueryLog());
+        return view('docent');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function acceptInterview(Request $request)
+    {
 
     }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function assignUsertoOpdracht(Request $request)
+    {
+
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
