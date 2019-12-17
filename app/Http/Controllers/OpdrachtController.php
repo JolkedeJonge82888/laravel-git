@@ -37,13 +37,15 @@ class OpdrachtController extends Controller
         DB::enableQueryLog(); // Enable query log
         $this->middleware('auth');
 
-
+            $opdrachtD = [];
         if(auth()->user()->isDocent()) {
             $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
 
             foreach($opdrachten as $opdracht)
             {
                 $opdrachtD = Opdracht::find($opdracht)->with('Description')->orderBy('start_date', 'asc')->paginate(6);
+
+                return view('opdracht.index')->with('opdrachts', $opdrachtD);
 
             }
 

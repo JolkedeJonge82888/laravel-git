@@ -1,7 +1,4 @@
 @extends('layouts.app')
-@php
-//toDo Remove this and Fix title
-@endphp
 @section('content')
     @isset($gespreken)
         @foreach($gespreken as $gesprek)
@@ -12,8 +9,16 @@
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <h4 class="card-title">Assignment: {{ $gesprek->title }}</h4>
-                                        <p class="card-text">Interview with: {{ $gesprek->name }}</p>
-                                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-check"></i></a>
+                                        @foreach($gesprek->TeamGesprek as $gesprek1)
+                                            <p class="card-text">Interview with: {{ $gesprek1->name }}</p>
+                                        @endforeach
+                                        <form action="" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger" type="submit"><i class="fa fa-check">Interview Done</i></button>
+                                        </form>
+                                        <a href="" class="btn btn-primary btn-sm">
+                                        </a>
                                     </div>
                                 </div>
                             </div>

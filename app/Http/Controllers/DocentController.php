@@ -15,15 +15,17 @@ class DocentController extends Controller
     }
     public function docent()
     {
-        //DB::enableQueryLog(); // Enable query log
+
         //dd();
         $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id')->all();
+        //DB::enableQueryLog(); // Enable query log
         foreach($opdrachten as $opdracht)
         {
-            $gespreken = Opdracht::find($opdracht)->TeamGesprek;
+            $gespreken = Opdracht::where('id', '=', $opdracht)->with('TeamGesprek')->get();
+            //dd(DB::getQueryLog());
             return view('docent')->with('gespreken', $gespreken);
         }
-        //dd(DB::getQueryLog());
+
         return view('docent');
     }
     /**
