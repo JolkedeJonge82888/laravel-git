@@ -24,12 +24,12 @@ class Opdracht extends Model
 
     public function TeamOpdracht()
     {
-        return $this->belongsToMany(Team::class, 'team-opdracht');
+        return $this->belongsToMany(Team::class, 'team-opdracht')->withPivot('id');
     }
 
     public function TeamGesprek()
     {
-        return $this->belongsToMany(Team::class, 'gesprek');
+        return $this->belongsToMany(Team::class, 'gesprek')->withPivot('id');
     }
 
 }
