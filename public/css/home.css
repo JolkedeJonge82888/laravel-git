@@ -1,8 +1,12 @@
 .btn {
     border-radius: 2px;
     margin-bottom: 5px;
-    transform: skew(8deg);
+    transform: skew(-8deg);
     transition: .3s;
+}
+
+.card-body .btn-nfr {
+    width: 80px;
 }
 
 .underlined:after{
@@ -27,7 +31,6 @@
 }
 
 .card-body .btn-primary {
-    transform: skew(-8deg);
     background-color: #fff;
     color: #007b5e;
 }
@@ -42,6 +45,10 @@
     padding-right: 25px;
 }
 
+/*   showJS stuff   */
+.hide {
+    display: none;
+}
 
 /*  statistic styling   */
 .statistic {

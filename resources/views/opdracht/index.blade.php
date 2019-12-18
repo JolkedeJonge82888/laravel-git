@@ -14,19 +14,25 @@
             </div><br />
         @endif
     </div>
-    @docent
+
     <div class="container">
+        @docent
         <a href="{{ route('opdracht.create') }}" class="btn btn-primary">Create Assignment</a>
+        <a onclick="showAssignment()" class="btn btn1 btn-primary" style="margin-left: 50px; ">Hide Assignment</a>
+        <a onclick="showOpen()" class="btn btn2 btn-primary">Hide Open</a>
+        <a onclick="showClosed()" class="btn btn3 btn-primary">Hide Closed</a>
+        @enddocent
+
     </div>
     <br>
-    @enddocent
+
     <div class="row">
         @isset($opdrachts)
             @foreach($opdrachts as $opdracht)
 
                 @if(!auth()->user()->hasOpdracht($opdracht->id) || !auth()->user()->isDocent())
                     @if($opdracht->start_date <= Today() && $opdracht->end_date >= Today())
-                        <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="assignment" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                             <div class="image-flip">
                                 <div class="mainflip">
                                     <div class="frontside">
@@ -38,11 +44,11 @@
                                                 <p class="card-text">{{ date('d-m-Y', strtotime($opdracht->end_date)) }}</p>
                                                 @docent
                                                 @if(auth()->user()->hasOpdracht($opdracht->id))
-                                                    <a href="{{ route('opdracht.edit',$opdracht->id)}}" class="btn btn-primary">Edit</a>
+                                                    <a href="{{ route('opdracht.edit',$opdracht->id)}}" class="btn btn-nfr btn-primary">Edit</a>
                                                     <form action="{{ route('opdracht.destroy', $opdracht->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                        <button class="btn btn-nfr btn-danger" type="submit">Delete</button>
                                                     </form>
                                                 @endif
                                                 @enddocent
@@ -59,7 +65,7 @@
                 @docent
                     @if(auth()->user()->hasOpdracht($opdracht->id))
                         @if($opdracht->start_date <= Today() && $opdracht->end_date >= Today())
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="open" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                                 <div class="image-flip">
                                     <div class="mainflip">
                                         <div class="frontside">
@@ -88,7 +94,7 @@
                                 </div>
                             </div>
                             @else
-                            <div class="col-xs-12 col-sm-6 col-md-4">
+                            <div class="closed" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                                 <div class="image-flip">
                                     <div class="mainflip">
                                         <div class="frontside">
@@ -104,11 +110,10 @@
                                                         <form action="{{ route('opdracht.destroy', $opdracht->id)}}" method="post">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button class="btn btn-danger" type="submit" style="background-color:rgba(248,250,252,0.3); color: rgba(0,0,0,0.5);">Delete</button>
+                                                            <button class="btn btn-nfr btn-danger" type="submit" style="background-color:rgba(248,250,252,0.3); color: rgba(0,0,0,0.5);">Delete</button>
                                                         </form>
                                                     @endif
                                                     @enddocent
-
 
                                                 </div>
                                             </div>
@@ -128,4 +133,56 @@
             </div>
 @endisset
     </div>
+    <script type="text/javascript">
+
+        function showAssignment()
+        {
+            $(document).ready(function(){
+                $(".assignment").toggle(function () {
+                    if( $(".assignment").is(':visible') === true)
+                    {
+                        $(".btn1").text("Hide Assignment");
+                    }
+                    else
+                    {
+                        $(".btn1").text("Show Assignment");
+                    }
+                });
+            });
+        }
+
+        function showOpen()
+        {
+            $(document).ready(function(){
+                $(".open").toggle(function () {
+                    if( $(".open").is(':visible') === true)
+                    {
+                        $(".btn2").text("Hide Open");
+                    }
+                    else
+                    {
+                        $(".btn2").text("Show Open");
+                    }
+                });
+            });
+        }
+
+        function showClosed()
+        {
+            $(document).ready(function(){
+                $(".closed").toggle(function () {
+                    if( $(".closed").is(':visible') === true)
+                    {
+                        $(".btn3").text("Hide Closed");
+                    }
+                    else
+                    {
+                        $(".btn3").text("Show Closed");
+                    }
+                });
+            });
+        }
+
+
+    </script>
 @endsection
