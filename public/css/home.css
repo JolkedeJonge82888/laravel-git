@@ -1,7 +1,7 @@
 .btn {
     border-radius: 2px;
     margin-bottom: 5px;
-    transform: skew(-8deg);
+    transform: skew(-6deg);
     transition: .3s;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .card-body .btn-danger {
-    transform: skew(-8deg);
+    transform: skew(-6deg);
     background-color: #fff;
     color: #007b5e;
 }
