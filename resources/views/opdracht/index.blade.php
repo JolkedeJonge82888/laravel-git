@@ -65,7 +65,7 @@
                 @docent
                     @if(auth()->user()->hasOpdracht($opdracht->id))
                         @if($opdracht->start_date <= Today() && $opdracht->end_date >= Today())
-                            <div class="open" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
+                            <div class="opdracht open" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                                 <div class="image-flip">
                                     <div class="mainflip">
                                         <div class="frontside">
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             @else
-                            <div class="closed" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
+                            <div class="opdracht closed" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                                 <div class="image-flip">
                                     <div class="mainflip">
                                         <div class="frontside">
