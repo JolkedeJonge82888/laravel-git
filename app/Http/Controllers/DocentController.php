@@ -20,21 +20,19 @@ class DocentController extends Controller
     public function docent()
     {
 
-        //dd();
-
-        $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id')->all();
-        //DB::enableQueryLog(); // Enable query log
-        foreach($opdrachten as $opdracht)
-        {
-
-            $gespreken = Opdracht::where('id', '=', $opdracht)->with('TeamGesprek')->paginate(10);
-            //dd(DB::getQueryLog());
-
-            return view('docent')->with('gespreken', $gespreken);
+        $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
+        foreach ($opdrachten as $opdracht) {
+            $gespreken = Opdracht::where('id', '=', $opdracht)->with('TeamGesprek');
 
         }
+            dd($gespreken);
 
-        return view('docent');
+
+        return view('docent')->with('gespreken', $gespreken);
+        //return view('docent');
+
+
+
     }
     /**
      * Remove the specified resource from storage.
