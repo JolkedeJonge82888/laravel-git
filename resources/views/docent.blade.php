@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        .uper {
+        .upper {
             margin-top: 40px;
         }
     </style>
 
-    <div class="uper">
+    <div class="upper">
         @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
