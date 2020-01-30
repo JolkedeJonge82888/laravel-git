@@ -27,14 +27,11 @@ class DocentController extends Controller
         foreach($opdrachten as $opdracht)
         {
 
-            $gespreken = Opdracht::where('id', '=', $opdracht)->with('TeamGesprek')->paginate(10);
-            //dd(DB::getQueryLog());
-
-            return view('docent')->with('gespreken', $gespreken);
+            $gespreken[] = Opdracht::find($opdracht)->TeamGesprek;
 
         }
 
-        return view('docent');
+        return view('docent')->with('gespreken', $gespreken);
     }
     /**
      * Remove the specified resource from storage.
@@ -88,7 +85,7 @@ class DocentController extends Controller
                 'start_date' => $request->input('startdate'),
                 'end_date' => $request->input('enddate'),
             ]);
-
+            Gesprek::where('opdracht_id', '=', (int)$request->input('opdracht_id'))->delete();
             return redirect('/teacher')->with('success', 'Added team to this assignment');
         } else {
             return redirect('/teacher');
