@@ -19,20 +19,16 @@ class DocentController extends Controller
 
     public function docent()
     {
+        if(auth()->user()->isDocent()) {
+            $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
 
-        $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
-        foreach ($opdrachten as $opdracht) {
-            $gespreken = Opdracht::where('id', '=', $opdracht)->with('TeamGesprek');
+            foreach($opdrachten as $opdracht) {
+                $gespreken[] = Opdracht::find($opdracht)->TeamGesprek;
+            }
 
-        }
             dd($gespreken);
-
-
-        return view('docent')->with('gespreken', $gespreken);
-        //return view('docent');
-
-
-
+            return view('docent')->with('gespreken', $gespreken);
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -86,7 +82,7 @@ class DocentController extends Controller
                 'start_date' => $request->input('startdate'),
                 'end_date' => $request->input('enddate'),
             ]);
-
+            Gesprek::where('opdracht_id', '=', (int)$request->input('opdracht_id'))->delete();
             return redirect('/teacher')->with('success', 'Added team to this assignment');
         } else {
             return redirect('/teacher');
