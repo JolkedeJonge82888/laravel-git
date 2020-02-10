@@ -30,24 +30,62 @@
                                     @endif
                                 @endif
                             @else
+                                @if(\App\Offerte::where('opdracht_id', '=', $opdracht->id)->where('team_id', '=', \App\Users::find(Auth::user()->id)->Team->pluck('id')->first())->count() < 1 )
+                                    <div class="form-group">
+                                        <form method="POST" action="{{ route('offerte') }}" enctype="multipart/form-data">
+                                            @method('POST')
+                                            @csrf
 
-                                <div class="form-group">
-                                    <form method="POST" action="{{ route('offerte') }}" enctype="multipart/form-data">
-                                        @method('POST')
-                                        @csrf
+                                            <div class="form-group">
+                                                <label class="@if($errors->has('offerte')) text-danger @endif" for="quantity">Upload Offerte:</label>
+                                                <input type="file" class="form-control @if($errors->has('files')) text-danger border border-danger @endif"  name="offerte"/>
+                                                @if ($errors->has('offerte'))
+                                                    <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+                                                        <ul>
+                                                            @if ($errors->has('offerte'))
+                                                                <li>{{ $errors->first('offerte') }}</li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                                <input type="hidden" class="form-control"  name="team" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('name')->first() }}"/>
+                                                <input type="hidden" class="form-control"  name="opdracht" value="{{ $opdracht->title }}"/>
+                                                <input type="hidden" class="form-control"  name="teamID" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('id')->first() }}"/>
+                                                <input type="hidden" class="form-control"  name="opdrachtID" value="{{ $opdracht->id }}"/>
+                                                <br>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <p class="card-text underlined" style="width:200px;">Wait for your answer!</p>
 
-                                        <div class="form-group">
-                                            <label class="@if($errors->has('offerte')) text-danger @endif" for="quantity">Upload Offerte:</label>
-                                            <input type="file" class="form-control @if($errors->has('files')) text-danger border border-danger @endif"  name="offerte"/>
-                                            <input type="hidden" class="form-control"  name="team" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('name')->first() }}"/>
-                                            <input type="hidden" class="form-control"  name="opdracht" value="{{ $opdracht->title }}"/>
-                                            <input type="hidden" class="form-control"  name="teamID" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('id')->first() }}"/>
-                                            <input type="hidden" class="form-control"  name="opdrachtID" value="{{ $opdracht->id }}"/>
-                                            <br>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Upload</button>
-                                    </form>
-                                </div>
+                                    <div class="form-group">
+                                        <form method="POST" action="{{ route('offerte') }}" enctype="multipart/form-data">
+                                            @method('POST')
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label class="@if($errors->has('offerte')) text-danger @endif" for="quantity">Reupload Offerte:</label>
+                                                <input type="file" class="form-control @if($errors->has('files')) text-danger border border-danger @endif"  name="offerte"/>
+                                                @if ($errors->has('offerte'))
+                                                    <div class="alert alert-danger" style="padding: 2px !important; height: 30px;">
+                                                        <ul>
+                                                            @if ($errors->has('offerte'))
+                                                                <li>{{ $errors->first('offerte') }}</li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                @endif
+                                                <input type="hidden" class="form-control"  name="team" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('name')->first() }}"/>
+                                                <input type="hidden" class="form-control"  name="opdracht" value="{{ $opdracht->title }}"/>
+                                                <input type="hidden" class="form-control"  name="teamID" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('id')->first() }}"/>
+                                                <input type="hidden" class="form-control"  name="opdrachtID" value="{{ $opdracht->id }}"/>
+                                                <br>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Upload</button>
+                                        </form>
+                                @endif
 
                             @endif
                         </div>

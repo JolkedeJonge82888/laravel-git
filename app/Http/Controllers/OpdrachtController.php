@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gesprek;
+use App\Offerte;
 use App\TeamOpdracht;
 use App\User;
 use App\UserOpdracht;
@@ -205,12 +206,20 @@ class OpdrachtController extends Controller
      */
     public function offerte(Request $request)
     {
+
+
         if($request->hasFile('offerte')){
+
+            $request->validate([
+                'offerte' => 'required',
+            ]);
+
 
             $extension=$request->file('offerte')->getClientOriginalExtension();
             $fileNameToStore='Offerte_'.$request->input('team').'_'.$request->input('opdracht').'.'.$extension;
             request()->offerte->move('files/', $fileNameToStore);
 
+            $offerte = Offerte::create(['team_id' => $request->input('teamID'), 'opdracht_id' => $request->input('opdrachtID')]);
             return redirect('/opdracht')->with('success', 'Offerte is toegevoegt');
         }
         else{

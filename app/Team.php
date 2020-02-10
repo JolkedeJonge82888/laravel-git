@@ -29,5 +29,9 @@ class Team extends Model
         return $this->belongsToMany(Opdracht::class, 'gesprek');
     }
 
+    public function Offerte()
+    {
+        return $this->belongsToMany(Opdracht::class, 'offerte');
+    }
 
 }

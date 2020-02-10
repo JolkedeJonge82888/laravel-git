@@ -32,4 +32,9 @@ class Opdracht extends Model
         return $this->belongsToMany(Team::class, 'gesprek');
     }
 
+    public function Offerte()
+    {
+        return $this->belongsToMany(Team::class, 'offerte');
+    }
+
 }
