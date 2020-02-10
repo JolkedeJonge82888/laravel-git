@@ -196,6 +196,20 @@ class OpdrachtController extends Controller
             return redirect('/opdracht');
         }
     }
+
+    public function offerte(Request $request)
+    {
+        $file = $request->file('avatar');
+        $destinationPath = 'offerte/';
+        $originalFile = $file->getClientOriginalName();
+        $filename=strtotime(date('Y-m-d-H:isa')).$originalFile;
+        $file->move($destinationPath, $filename);
+
+        return redirect('/opdracht')->with('success', 'Opdracht has been added');
+
+    }
+
+
     /**
      * Remove the specified resource from storage.
      *
