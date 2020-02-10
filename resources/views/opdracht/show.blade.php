@@ -31,7 +31,23 @@
                                 @endif
                             @else
 
+                                <div class="form-group">
+                                    <form method="POST" action="{{ route('offerte') }}" enctype="multipart/form-data">
+                                        @method('POST')
+                                        @csrf
 
+                                        <div class="form-group">
+                                            <label class="@if($errors->has('offerte')) text-danger @endif" for="quantity">Upload Offerte:</label>
+                                            <input type="file" class="form-control @if($errors->has('files')) text-danger border border-danger @endif"  name="offerte"/>
+                                            <input type="hidden" class="form-control"  name="team" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('name')->first() }}"/>
+                                            <input type="hidden" class="form-control"  name="opdracht" value="{{ $opdracht->title }}"/>
+                                            <input type="hidden" class="form-control"  name="teamID" value="{{ \App\Users::find(Auth::user()->id)->Team->pluck('id')->first() }}"/>
+                                            <input type="hidden" class="form-control"  name="opdrachtID" value="{{ $opdracht->id }}"/>
+                                            <br>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                    </form>
+                                </div>
 
                             @endif
                         </div>

@@ -198,15 +198,27 @@ class OpdrachtController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
     public function offerte(Request $request)
     {
-        $file = $request->file('avatar');
-        $destinationPath = 'offerte/';
-        $originalFile = $file->getClientOriginalName();
-        $filename=strtotime(date('Y-m-d-H:isa')).$originalFile;
-        $file->move($destinationPath, $filename);
+        if($request->hasFile('offerte')){
 
-        return redirect('/opdracht')->with('success', 'Opdracht has been added');
+            $extension=$request->file('offerte')->getClientOriginalExtension();
+            $fileNameToStore='Offerte_'.$request->input('team').'_'.$request->input('opdracht').'.'.$extension;
+            request()->offerte->move('files/', $fileNameToStore);
+
+            return redirect('/opdracht')->with('success', 'Offerte is toegevoegt');
+        }
+        else{
+            return redirect('/opdracht')->with('success', 'Error');
+        }
+
+
+
 
     }
 
