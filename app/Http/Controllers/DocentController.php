@@ -19,16 +19,19 @@ class DocentController extends Controller
 
     public function docent()
     {
-        if(auth()->user()->isDocent()) {
-            $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id');
 
-            foreach($opdrachten as $opdracht) {
-                $gespreken[] = Opdracht::find($opdracht)->TeamGesprek;
-            }
+        //dd();
 
-            dd($gespreken);
-            return view('docent')->with('gespreken', $gespreken);
+        $opdrachten = Users::find(Auth::user()->id)->Opdracht->pluck('id')->all();
+        //DB::enableQueryLog(); // Enable query log
+        foreach($opdrachten as $opdracht)
+        {
+
+            $gespreken[] = Opdracht::find($opdracht)->TeamGesprek;
+
         }
+
+        return view('docent')->with('gespreken', $gespreken);
     }
     /**
      * Remove the specified resource from storage.

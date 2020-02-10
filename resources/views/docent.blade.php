@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
     <style>
-        .upper {
+        .uper {
             margin-top: 40px;
         }
     </style>
 
-    <div class="upper">
+    <div class="uper">
         @if(session()->get('success'))
             <div class="alert alert-success">
                 {{ session()->get('success') }}
@@ -14,18 +14,18 @@
         @endif
     </div>
     @isset($gespreken)
+
         @foreach($gespreken as $gesprek)
+            @foreach($gesprek as $gesprek1)
 
-
-            @if(\App\TeamOpdracht::where('opdracht_id', '=', $gesprek->id) != null)
+            @if(\App\TeamOpdracht::where('opdracht_id', '=', $gesprek1->pivot->pivotParent->id) != null)
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="image-flip">
                     <div class="mainflip">
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <h4 class="card-title">Assignment: {{ $gesprek->title }}</h4>
-                                    @foreach($gesprek->pivot as $gesprek1)
+                                    <h4 class="card-title">Assignment: {{ $gesprek1->pivot->pivotParent->title }}</h4>
                                         @if(\App\Gesprek::find($gesprek1->pivot->id)->pluck('check')->first() != 1)
                                         <p class="card-text">Interview with: {{ $gesprek1->name }}</p>
                                             <form action="{{ route('gesprek/accept', $gesprek1->pivot->id) }}" method="GET">
@@ -41,7 +41,7 @@
                                                     <div class="form-group">
                                                         @csrf
                                                         <input type="hidden" value="{{$gesprek1->id}}" name="team_id" />
-                                                        <input type="hidden" value="{{$gesprek->id}}" name="opdracht_id" />
+                                                        <input type="hidden" value="{{$gesprek1->pivot->pivotParent->id}}" name="opdracht_id" />
                                                         <label class="@if($errors->has('coin')) text-danger @endif" for="name">* Assignments Coins:</label>
                                                         <input type="text" class="form-control @if($errors->has('coin')) text-danger border border-danger @endif" name="coin" value="{{ old('coin') }}"/>
                                                         <br>
@@ -92,13 +92,14 @@
                                         </div>
 
                                         @endif
-                                    @endforeach
+
 
                                 </div>
                             </div>
                         </div>
                     </div>
             @endif
+            @endforeach
         @endforeach
     @endisset
 @endsection

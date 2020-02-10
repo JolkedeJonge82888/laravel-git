@@ -11,7 +11,7 @@ class Team extends Model
     protected $table = 'team';
     public $timestamps = false;
     protected $fillable = array('name', 'point');
-    protected $visible = array('id','name', 'point');
+    protected $visible = array('id', 'name', 'point');
 
     public function Users()
     {
