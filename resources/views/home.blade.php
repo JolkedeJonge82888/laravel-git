@@ -33,6 +33,36 @@
         </div>
     </section>
 
+    @isset($opdrachten)
+        @foreach($opdrachten as $opdracht)
+            <section id="stats" class="pb-5">
+                <div class="container">
+                    <h5 class="section-title h1">Current Assignments</h5>
+                </div>
+                @if(!auth()->user()->hasOpdracht($opdracht->id) || !auth()->user()->isDocent())
+                    <div class="assignment" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
+                        <div class="image-flip">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title">{{ $opdracht->title }} - Active</h4>
+                                            <p class="card-text">{{ $opdracht->description->text }}</p>
+                                            <p class="card-text">{{ date('d-m-Y', strtotime($opdracht->start_date)) }}</p>
+                                            <p class="card-text">{{ date('d-m-Y', strtotime($opdracht->end_date)) }}</p>
+                                            <a href="{{ route('opdracht.show', $opdracht->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </section>
+        @endforeach
+    @endisset
+
     <section id="stats" class="pb-5">
 
         <div class="container">

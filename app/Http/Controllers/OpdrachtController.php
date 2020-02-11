@@ -44,7 +44,10 @@ class OpdrachtController extends Controller
             return view('opdracht.index')->with('opdrachts', $opdrachten);
 
         } else {
-            $opdrachtD = Opdracht::with('Description')->whereDate('start_date', '<=', Carbon::today())->whereDate('end_date', '>=', Carbon::today())->orderBy('start_date', 'asc')->paginate(6);
+            $opdrachtD = Opdracht::with('Description')->whereDate('start_date', '<=', Carbon::today())->whereDate('end_date', '>=', Carbon::today())->orderBy('start_date', 'asc')->doesntHave('TeamOpdracht')->paginate(6);
+
+
+
             return view('opdracht.index')->with('opdrachts', $opdrachtD);
         }
 
@@ -218,7 +221,7 @@ class OpdrachtController extends Controller
         if($request->hasFile('offerte')){
 
             $request->validate([
-                'offerte' => 'required',
+                'offerte' => 'required|mimes:docx,pdf,doc',
             ]);
 
 

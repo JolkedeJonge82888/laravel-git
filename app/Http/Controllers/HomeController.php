@@ -50,8 +50,12 @@ class HomeController extends Controller
         } else {
             $teamName = Team::all();
             $users = Team::find($team)->Users;
-            return view('home', ['users' => $users, 'teams' => $teamName]);
+            $opdrachten = Team::find($team)->OpdrachtTeam;
+
+            return view('home', ['users' => $users, 'teams' => $teamName, 'opdrachten' => $opdrachten]);
         }
+
+
 
         //dd($team);
         //
