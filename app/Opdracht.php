@@ -29,7 +29,7 @@ class Opdracht extends Model
 
     public function TeamGesprek()
     {
-        return $this->belongsToMany(Team::class, 'gesprek');
+        return $this->belongsToMany(Team::class, 'gesprek')->withPivot('id', 'check');
     }
 
     public function Offerte()

@@ -191,6 +191,13 @@ class OpdrachtController extends Controller
 
             $opdracht = Opdracht::find($id)->Description;
             $opdracht->delete();
+            $offerte = Offerte::where('opdracht_id', '=', $id);
+
+            foreach($offerte->pluck('name') as $name) {
+                unlink("files/".$name);
+            }
+
+            Offerte::where('opdracht_id', '=', $id)->delete();
 
             return redirect('/opdracht')->with('success', 'Opdracht has been deleted Successfully');
 
@@ -219,11 +226,8 @@ class OpdrachtController extends Controller
             $fileNameToStore='Offerte_'.$request->input('team').'_'.$request->input('opdracht').'.'.$extension;
             request()->offerte->move('files/', $fileNameToStore);
 
-            $offerte = Offerte::create(['team_id' => $request->input('teamID'), 'opdracht_id' => $request->input('opdrachtID')]);
+            Offerte::create(['team_id' => $request->input('teamID'), 'opdracht_id' => $request->input('opdrachtID'), 'name' => $fileNameToStore]);
             return redirect('/opdracht')->with('success', 'Offerte is toegevoegt');
-        }
-        else{
-            return redirect('/opdracht')->with('success', 'Error');
         }
 
 

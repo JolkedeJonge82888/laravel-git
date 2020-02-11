@@ -9,8 +9,10 @@ class CreateOfferteTable extends Migration {
 	{
 		Schema::create('offerte', function(Blueprint $table) {
 			$table->increments('id');
+            $table->string('name');
 			$table->integer('team_id');
 			$table->integer('opdracht_id');
+            $table->timestamps();
 		});
 	}
 
