@@ -36,3 +36,5 @@ Route::get('gesprek/accept/{id}', 'DocentController@acceptInterview')->name('ges
 Route::post('team/select/', 'DocentController@assignUsertoOpdracht')->name('team/select');
 
 Route::post('offerte', 'OpdrachtController@offerte')->name('offerte');
+
+Route::resource('team', 'TeamController');

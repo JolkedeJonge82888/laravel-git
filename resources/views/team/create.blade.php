@@ -8,13 +8,14 @@
         <div class="card-body">
 
             <form method="POST" action="{{ route('team.store') }}">
-                <div class="form-group">
+                <div class="form-group centered">
                     @csrf
                     <label class="" for="name">Team Name:</label>
-                    <input type="text" class="form-control teamName" name="team_title" value="Team Name"/>
+                    <input type="text" class="form-control teamName" name="team_name" placeholder="Team Name..."/>
                     <br>
+                    <button type="submit" class="btn btn-primary">Add Team</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Team</button>
+
             </form>
         </div>
     </div>
