@@ -54,7 +54,7 @@
                                                                    for="name">* Assignments Coins:</label>
                                                             <input type="text"
                                                                    class="form-control @if($errors->has('coin')) text-danger border border-danger @endif"
-                                                                   name="coin" value="{{ old('coin') }}"/>
+                                                                   name="coin" placeholder="Max Coins..." value="{{ old('coin') }}"/>
                                                             <br>
                                                             @if ($errors->has('coin'))
                                                                 <div class="alert alert-danger"
@@ -131,4 +131,11 @@
             @endforeach
         @endforeach
     @endisset
+    <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
+        <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
+            No Interview</div>
+
+        <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
+            No Teams asked for an interview!</div>
+    </div>
 @endsection

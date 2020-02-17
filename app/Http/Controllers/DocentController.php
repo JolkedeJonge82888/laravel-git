@@ -31,6 +31,12 @@ class DocentController extends Controller
 
         }
 
+        if($opdrachten == null) {
+
+            return view('docent');
+
+        }
+
         return view('docent')->with('gespreken', $gespreken);
     }
     /**

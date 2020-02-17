@@ -17,11 +17,14 @@
 
     <div class="container">
         @docent
-        <a href="{{ route('opdracht.create') }}" class="btn btn-primary">Create Assignment</a>
-        <a onclick="showAssignment()" class="btn btn1 btn-primary" style="margin-left: 50px; ">Hide Assignment</a>
-        <a onclick="showOpen()" class="btn btn2 btn-primary">Hide Open</a>
-        <a onclick="showClosed()" class="btn btn3 btn-primary">Hide Closed</a>
+            <a href="{{ route('opdracht.create') }}" class="btn btn-primary">Create Assignment</a>
+            <a onclick="showOpen()" class="btn btn2 btn-primary">Hide Open</a>
+            <a onclick="showClosed()" class="btn btn3 btn-primary">Hide Closed</a>
         @enddocent
+        @if( !auth()->user()->isDocent())
+            <a onclick="showAssignment()" class="btn btn1 btn-primary" style="margin-left: 50px; ">Hide Assignment</a>
+        @endif
+        <a onclick="showActive()" class="btn btn4 btn-primary" style="margin-left: 50px; ">Hide Active</a>
 
     </div>
     <br>
@@ -96,7 +99,7 @@
                                     @else
                                         @php($active = \App\Opdracht::find($opdracht->id)->TeamOpdracht->where('id', '=', \App\Users::find(Auth::user()->id)->Team->pluck('id')->first()))
                                         @foreach($active as $active1)
-                                            <div class="opdracht open" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
+                                            <div class="opdracht active" class="col-xs-12 col-sm-6 col-md-4" style="display: block;">
                                             <div class="image-flip">
                                                 <div class="mainflip">
                                                     <div class="frontside">
@@ -197,6 +200,22 @@
                     else
                     {
                         $(".btn2").text("Show Open");
+                    }
+                });
+            });
+        }
+
+        function showActive()
+        {
+            $(document).ready(function(){
+                $(".active").toggle(function () {
+                    if( $(".active").is(':visible') === true)
+                    {
+                        $(".btn4").text("Hide Active");
+                    }
+                    else
+                    {
+                        $(".btn4").text("Show Active");
                     }
                 });
             });
