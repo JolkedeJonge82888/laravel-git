@@ -5,6 +5,11 @@
     background: #eee !important;
 }
 
+.centered {
+    margin: auto;
+    width: 40vw;
+}
+
 .opdracht {
     margin-left: 10px;
     margin-right: 10px;
