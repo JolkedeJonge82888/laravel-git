@@ -9,6 +9,7 @@ use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Team;
 
 class DocentController extends Controller
 {
@@ -30,7 +31,6 @@ class DocentController extends Controller
             $gespreken[] = Opdracht::find($opdracht)->TeamGesprek;
 
         }
-
         if($opdrachten == null) {
 
             return view('docent');
@@ -48,16 +48,13 @@ class DocentController extends Controller
     public function acceptInterview($id)
     {
         if(auth()->user()->isDocent()) {
-            if(Gesprek::find($id)->pluck('check')->first() != 1) {
+
 
                 $gesprek = Gesprek::find($id);
                 $gesprek->check = 1;
                 $gesprek->save();
                 return redirect('/teacher')->with('success', 'Interview has been done!');
 
-            } else {
-                return redirect('/teacher');
-            }
         } else {
             return redirect('/teacher');
         }
@@ -83,6 +80,10 @@ class DocentController extends Controller
                 'enddate'=> 'required|date|after:startdate',
 
             ]);
+            $team = Team::find((int)$request->input('team_id'));
+
+            $team->point += (int)$request->input('coin')/3;
+            $team->save();
 
             TeamOpdracht::insert([
                 'team_id' => (int)$request->input('team_id'),
@@ -98,7 +99,29 @@ class DocentController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function giveCoins(Request $request)
+    {
+        if(auth()->user()->isDocent()) {
 
+            $request->validate([
+                'team_id'=>'required',
+                'coin'=>'required',
+            ]);
+
+            $team = Team::find((int)$request->input('team_id'));
+
+            $team->point += (int)$request->input('coin');
+            $team->save();
+            return redirect('/teacher')->with('success', 'Gave points to the team!');;
+        } else {
+            return redirect('/teacher');
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
