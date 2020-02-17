@@ -15,7 +15,7 @@
                                     <div class="frontside">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <p><img class=" img-fluid" src="" alt="card image"></p>
+                                                <p><img class="img-fluid" src="" alt="card image"></p>
                                                 <h4 class="card-title">{{ $user->name }}</h4>
                                                 <p class="card-text">This is basic card with image on top, title, description and button.</p>
                                                 <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
@@ -132,7 +132,7 @@
 
             if (switch1.style.display === "none") {
                 switch1.style.display = "flex";
-                switch2.style.display = "none";
+                    switch2.style.display = "none";
             }
         }
 

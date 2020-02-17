@@ -81,18 +81,14 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Business Battle
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://beroeps.ict-lab.nl">Beroeps</a>
+                    <a href="http://mijnglr.nl">Mijn GLR</a>
+                    <a href="https://github.com">GitHub</a>
+                    <a href="https://w3schools.com">w3 schools</a>
                 </div>
             </div>
         </div>
