@@ -59,7 +59,7 @@
                 </div>
                 <div class="form-group">
 
-                    <label for="quantity" class="@if($errors->has('opdracht_enddate')) text-danger @endif">* Assignment Close Date:</label>
+                    <label for="quantity" class="@if($errors->has('opdracht_enddate')) text-danger @endif">* Assignment Closing Date:</label>
                     <input type="date" class="form-control @if($errors->has('opdracht_enddate')) text-danger border border-danger @endif" placeholder="yyyy-mm-dd" name="opdracht_enddate" value="{{ old('opdracht_enddate') }}" />
                     <br>
                     @if ($errors->has('opdracht_enddate'))

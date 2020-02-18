@@ -23,11 +23,16 @@
                             <p class="card-text">Opdrachtgever: {{ $klant }}</p>
 
                             @if(!auth()->user()->isDocent())
-                                @if(!auth()->user()->hasGesprek($opdracht->id))
+                                @if(!auth()->user()->hasGesprek($opdracht->id) && \App\TeamOpdracht::where('opdracht_id', '=', $opdracht->id)->where('team_id', '=', \App\Users::find(Auth::user()->id)->Team->pluck('id')->first())->count() != 1)
                                     <a href="{{ route('gesprek', $opdracht->id)}}" class="btn btn-primary btn-sm">Vraag
                                         klantgesprek</a>
                                 @else
-                                    <p class=" btn-primary ">Gesprek is aan gevraagt</p>
+                                    @if(\App\TeamOpdracht::where('opdracht_id', '=', $opdracht->id)->where('team_id', '=', \App\Users::find(Auth::user()->id)->Team->pluck('id')->first())->count() == 1)
+                                        <p class=" btn-primary ">Deze opdracht is active</p>
+                                    @else
+                                        <p class=" btn-primary ">Gesprek is aan gevraagt</p>
+                                    @endif
+
                                 @endif
                             @endif
                         @else
