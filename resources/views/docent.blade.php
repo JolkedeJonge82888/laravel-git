@@ -14,9 +14,10 @@
         @endif
     </div>
     @isset($gespreken)
-
+        <div style="display: flex" class="row statistic">
         @foreach($gespreken as $gesprek)
             @foreach($gesprek as $gesprek1)
+
                 @if(\App\TeamOpdracht::where('opdracht_id', '=', $gesprek1->pivot->pivotParent->id) != null)
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="image-flip">
@@ -27,17 +28,17 @@
                                             <h4 class="card-title">
                                                 Assignment: {{ $gesprek1->pivot->pivotParent->title }}</h4>
 
-                                            @if(\App\Gesprek::find($gesprek1->pivot->id)->pluck('check')->first() != 1)
+                                            @if($gesprek1->pivot->check != 1)
                                                 <p class="card-text">Interview with: {{ $gesprek1->name }}</p>
                                                 <form action="{{ route('gesprek/accept', $gesprek1->pivot->id) }}"
                                                       method="GET">
                                                     @csrf
                                                     @method('GET')
                                                     <button class="btn btn-danger" type="submit"><i class="fa fa-check">
-                                                            Interview Done</i></button>
+                                                            Interview Done </i></button>
                                                 </form>
                                             @else
-                                                <p class="card-text">Interview is done!</p>
+                                                <p class="card-text">Interview done with: <b style="color: red;">{{ $gesprek1->name }}</b></p>
                                                 @if(\App\Offerte::where('opdracht_id', '=', $gesprek1->pivot->pivotParent->id)->where('team_id', '=', $gesprek1->id)->first() != null )
                                                     <form method="POST" action="{{ route('team/select') }}">
                                                         @method('POST')
@@ -45,6 +46,8 @@
                                                             @csrf
                                                             <a href="files/{{ \App\Offerte::where('opdracht_id', '=', $gesprek1->pivot->pivotParent->id)->where('team_id', '=', $gesprek1->id)->pluck('name')->first() }}">Download
                                                                 Offerte</a>
+                                                            <br>
+                                                            <br>
                                                             <input type="hidden" value="{{$gesprek1->id}}"
                                                                    name="team_id"/>
                                                             <input type="hidden"
@@ -130,12 +133,15 @@
                 @endif
             @endforeach
         @endforeach
+        </div>
     @endisset
-    <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
-        <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
-            No Interview</div>
+    @if(!isset($gespreken))
+        <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
+            <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
+                No Interview</div>
 
-        <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
-            No Teams asked for an interview!</div>
-    </div>
+            <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
+                No Teams asked for an interview!</div>
+        </div>
+    @endif
 @endsection
