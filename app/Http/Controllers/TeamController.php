@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Description;
 use App\Offerte;
 use App\Opdracht;
+use App\TeamUser;
 use Illuminate\Http\Request;
 use App\Team;
+use App\Users;
 
 
 class TeamController extends Controller
@@ -52,7 +54,7 @@ class TeamController extends Controller
         if(auth()->user()->isDocent()) {
 
             $request->validate([
-                'team_name'=>'required|string|min:5|max:255',
+                'team_name'=>'required|string|min:4|max:255',
             ]);
 
            Team::insert([
@@ -111,7 +113,7 @@ class TeamController extends Controller
         if(auth()->user()->isDocent()) {
 
             $request->validate([
-                'team_name'=>'required|string|min:8|max:255',
+                'team_name'=>'required|string|min:4|max:255',
             ]);
 
             $team = Team::find($id);
@@ -124,11 +126,18 @@ class TeamController extends Controller
 
 
         } else {
+
             return redirect('/team');
+
         }
     }
 
-
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
     public function destroy($id)
     {
         if(auth()->user()->isDocent()) {
@@ -142,4 +151,59 @@ class TeamController extends Controller
             return redirect('/team');
         }
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function member($id)
+    {
+        if (auth()->user()->isDocent()) {
+            $team = Team::find($id)->first();
+            $users = Users::doesntHave('Team')->get();
+
+
+
+            return view('team.member')->with('users', $users)->with('team', $team);
+        } else {
+            return redirect('/team');
+        }
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function addMember(Request $request, $id)
+    {
+        if(auth()->user()->isDocent()) {
+
+            $request->validate([
+                'user'=>'required',
+            ]);
+            foreach($request->input('user') as $item) {
+
+                TeamUser::insert([
+                    'users_id' => (int)$item,
+                    'team_id' => $id,
+                ]);
+
+            }
+
+
+            return redirect('/team')->with('success', 'Member(s) has been added!');
+
+
+        } else {
+            return redirect('/team');
+        }
+    }
+
+
+
 }
