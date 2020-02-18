@@ -26,7 +26,7 @@
                             <div class="card-body text-center">
                                 <h4 class="card-title">{{ $team->name }}</h4>
                                 <p class="card-text">Points: {{ $team->point }}</p>
-                                <a href="" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                <a href="{{route('team.show', $team->id)}}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                     </div>

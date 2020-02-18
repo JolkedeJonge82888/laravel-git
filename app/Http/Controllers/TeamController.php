@@ -71,7 +71,9 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-
+        $members = Team::find($id)->Users;
+        $team = Team::find($id)->first();
+        return view('team.show')->with('members', $members)->with('team', $team);
     }
 
     /**
