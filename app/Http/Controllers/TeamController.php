@@ -114,7 +114,7 @@ class TeamController extends Controller
         if(auth()->user()->isDocent()) {
 
             $request->validate([
-                'team_name'=>'required|string|min:8|max:255',
+                'team_name' => ['required', 'string', 'min:5', 'max:255', new sameName],
             ]);
 
             $team = Team::find($id);
