@@ -20,7 +20,7 @@
                             @endif
 
                             @docent
-                                <a href="{{ route('opdracht.create') }}" class="btn btn-primary">Add member</a>
+                                <a href="{{ route('member', $team->id) }}" class="btn btn-primary">Add member</a>
                             @enddocent
                         </div>
                     </div>

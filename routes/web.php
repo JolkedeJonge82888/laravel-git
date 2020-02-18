@@ -39,3 +39,5 @@ Route::post('team/give/', 'DocentController@givePionts')->name('team/give');
 Route::post('offerte', 'OpdrachtController@offerte')->name('offerte');
 
 Route::resource('team', 'TeamController');
+Route::get('member/{id}', 'TeamController@member')->name('member');
+Route::post('addMember/{id}', 'TeamController@addMember')->name('addMember');
