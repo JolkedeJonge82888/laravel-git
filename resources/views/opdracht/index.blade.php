@@ -27,6 +27,16 @@
         <a onclick="showActive()" class="btn btn4 btn-primary" style="margin-left: 50px; ">Hide Active</a>
 
     </div>
+
+    @if(!isset($opdrachts) || !$opdrachts->isNotEmpty())
+        <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
+            <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
+                No Assignments</div>
+
+            <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
+                Wait for the teacher to make assignments!</div>
+        </div>
+    @endif
     <br>
 
     <div class="row">

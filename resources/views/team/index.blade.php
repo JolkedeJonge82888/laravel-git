@@ -13,8 +13,17 @@
         @docent
             <a href="{{ route('team.create') }}" class="btn btn-primary">Create Team</a>
         @enddocent
-    </div>
 
+    </div>
+    @if(!isset($teams) || $teams == '[]')
+        <div style="position: relative; align-items: center;display: flex; justify-content: center; height: 80vh;">
+            <div style="border-right: 2px solid; font-size: 26px; padding: 0 15px 0 15px; text-align: center;">
+                No Teams</div>
+
+            <div class="message" style="padding: 10px; font-size: 18px; text-align: center;">
+                Wait for the teacher to make teams!</div>
+        </div>
+    @endif
     <div style="display: flex" class="row statistic">
     @foreach ($teams as $team)
 
@@ -43,5 +52,10 @@
         </div>
 
     @endforeach
+
     </div>
+
+
+
+
 @endsection
