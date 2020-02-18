@@ -5,6 +5,10 @@
     background: #eee !important;
 }
 
+.option {
+    padding: .5em;
+}
+
 .centered {
     margin: auto;
     width: 40vw;

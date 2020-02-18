@@ -5,15 +5,16 @@
             Add members
         </div>
         @isset($team)
-            <div class="card-body">
+            <div class="card-body" style="">
                 <form method="POST" action="{{ route('addMember', $team->id) }}">
                     @csrf
                     @method('POST')
                     <div class="form-group centered">
                         @isset($users)
-                            <select multiple="multiple" name='user[]' >
+                            <select multiple name='user[]'>
+                                <option class="option" value="" disabled selected>Choose your user(s)</option>
                                 @foreach($users as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                    <option class="option" value="{{$user->id}}">{{$user->name}}</option>
                                 @endforeach
                             </select>
                         @endisset
