@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Description;
+use App\Offerte;
+use App\Opdracht;
 use Illuminate\Http\Request;
 use App\Team;
 
@@ -84,7 +87,17 @@ class TeamController extends Controller
      */
     public function edit($id)
     {
+        if(empty($id) || $id == '' || !isset($id) || $id == null) {
+            return redirect('/team');
+        } else {
+            if (auth()->user()->isDocent()) {
+                $team = Team::find($id);
 
+                return view('team.edit')->with('team', $team);
+            } else {
+                return redirect('/team');
+            }
+        }
     }
 
     /**
@@ -95,12 +108,38 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(auth()->user()->isDocent()) {
 
+            $request->validate([
+                'team_name'=>'required|string|min:8|max:255',
+            ]);
+
+            $team = Team::find($id);
+
+            $team->name = $request->input('team_name');
+
+            $team->save();
+
+            return redirect('/team')->with('success', 'Team has been updated');
+
+
+        } else {
+            return redirect('/team');
+        }
     }
 
 
     public function destroy($id)
     {
+        if(auth()->user()->isDocent()) {
 
+            $team = Team::find($id);
+            $team->delete();
+
+            return redirect('/team')->with('success', 'Team has been deleted successfully');
+
+        } else {
+            return redirect('/team');
+        }
     }
 }
