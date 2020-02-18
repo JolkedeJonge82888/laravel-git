@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Description;
 use App\Offerte;
 use App\Opdracht;
+use App\Rules\sameName;
 use Illuminate\Http\Request;
 use App\Team;
 
@@ -52,8 +53,10 @@ class TeamController extends Controller
         if(auth()->user()->isDocent()) {
 
             $request->validate([
-                'team_name'=>'required|string|min:5|max:255',
+                'team_name' => ['required', 'string', 'min:5', 'max:255', new sameName],
             ]);
+
+
 
            Team::insert([
                'name' => $request->input('team_name'),
